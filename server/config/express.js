@@ -7,8 +7,8 @@ var logger = require('morgan');
 
 module.exports = function(app, config){
   app.set('views', path.join(config.rootPath, '/server/views'));
-  app.set('view engine', 'ejs');
-
+  app.engine('html', require('ejs').renderFile);  //Using HTML as view engine
+  app.set('view engine', 'html');
   //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
   app.use(logger('dev'));
   app.use(bodyParser.json());

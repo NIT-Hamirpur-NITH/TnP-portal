@@ -6,4 +6,8 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'TNP' });
 });
 
+router.get('/partials/*', function(req, res) {
+  res.render('partials/' + req.params[0]);
+});
+
 module.exports = router;
