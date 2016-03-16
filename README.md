@@ -13,4 +13,4 @@
 3. Install `npm`
 4. Install `bower`
 
-`work with <3`
+`work with <3 and passion`
