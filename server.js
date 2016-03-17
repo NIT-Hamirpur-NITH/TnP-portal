@@ -17,10 +17,10 @@ require('./server/config/express')(app, config);
 /**
   * Setting route variables
   */
-var routes = require('./routes/setRoutes');
+var setRoutes = require('./routes/setRoutes');
 var apiRoutes = require('./routes/apiRoutes');
 
-app.use('/', routes);
+app.use('/', setRoutes);
 app.use('/api', apiRoutes);
 app.get('*', function(req, res){
   res.redirect('/');

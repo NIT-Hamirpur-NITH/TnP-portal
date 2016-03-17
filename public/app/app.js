@@ -9,6 +9,9 @@ app.config(function($routeProvider, $locationProvider){
       templateUrl: 'partials/home',
       controller: 'homeCtrl'
     })
-    .otherwise({redirectTo: '/'});
-
+    .when('/logout', {
+      templateUrl: 'partials/logout',
+      controller: 'logoutCtrl'
+    })
+    .otherwise({redirectTo: '/'})
 });
