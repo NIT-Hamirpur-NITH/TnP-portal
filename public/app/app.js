@@ -7,7 +7,7 @@ app.config(function($routeProvider, $locationProvider){
   $routeProvider
     .when('/', {
       templateUrl: 'partials/home',
-      controller: 'homeCtrl'
+      controller: 'loginCtrl'
     })
     .when('/logout', {
       templateUrl: 'partials/logout',

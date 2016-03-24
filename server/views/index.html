@@ -9,8 +9,20 @@
     <link href="stylesheets/style.css" rel="stylesheet">
   </head>
   <body ng-app="tnp">
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">TnP</a>
+        </div>
+      </div>
+    </nav>
 
-    <div ng-view></div>
+    <div class="container">
+      <p>
+        <h1 class="text-center">Welcome to Training and placement portal of NITH</h1>
+      </p>
+      <div ng-view></div>
+    </div>
 
     <!-- Scripts -->
     <script src="/lib/jquery/dist/jquery.min.js"></script>
@@ -20,11 +32,10 @@
     <script src="/lib/angular-route/angular-route.min.js"></script>
     <script src="/app/app.js"></script>
     <!-- CONTROLLERS -->
-    <script src="/app/controllers/homeCtrl.js"></script>
-    <script src="/app/controllers/logoutCtrl.js"></script>
+    <script src="/app/controllers/loginCtrl.js"></script>
 
     <!-- SERVICES -->
-    <script src="/app/services/logout.js"></script>
+    <script src="/app/services/login.js"></script>
 
     <!-- Scripts end here -->
   </body>

@@ -1,5 +1,30 @@
-<h1>{{title}}</h1>
-<p>
-  <blockquote>Welcome to Training and placement portal of NITH</blockquote>
-  <a href="/logout">Sign Out</a>
-</p>
+<form class="form-horizontal">
+  <div class="form-group">
+    <div class="col-md-9 col-md-offset-3">
+      <h2>Login</h2>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="username" class="col-md-1 col-md-offset-3 control-label">Username</label>
+      <div class="col-md-5">
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+          <input type="text" class="form-control" placeholder="Enter your Roll no." ng-model="username">
+        </div>
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="password" class="col-md-1 col-md-offset-3 control-label">Password</label>
+      <div class="col-md-5">
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-eye-close"></span></div>
+          <input type="password" class="form-control" placeholder="Password" ng-model="password">
+        </div>
+      </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-6 col-md-offset-4">
+      <button type="submit" class="btn btn-default glyphicon glyphicon-align-justify" ng-click="signIn(username, password)"> Signin</button>
+    </div>
+  </div>
+</form>
