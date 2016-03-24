@@ -1,8 +1,15 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@font-face{
+    font-family:'Lato';
+    src:url('../../fonts/lato/Lato-Regular.ttf');
+}
+.no-margin{
+  margin: 0;
 }
 
-a {
-  color: #00B7FF;
+.no-padding{
+  padding: 0;
+}
+
+body{
+  font-family: Lato
 }
