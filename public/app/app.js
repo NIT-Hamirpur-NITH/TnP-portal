@@ -6,12 +6,12 @@ app.config(function($routeProvider, $locationProvider){
 
   $routeProvider
     .when('/', {
-      templateUrl: 'partials/home',
-      controller: 'loginCtrl'
+      templateUrl: 'partials/login',
+      controller: 'authCtrl'
     })
-    .when('/logout', {
-      templateUrl: 'partials/logout',
-      controller: 'logoutCtrl'
+    .when('/home', {
+      templateUrl: 'partials/home',
+      controller: 'authCtrl'
     })
     .otherwise({redirectTo: '/'})
 });

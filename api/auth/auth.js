@@ -11,10 +11,7 @@ exports.loginAuthenticate = function(req, res, next) {
         */
       }
       if(!user){
-          res.json({
-                      "message":"Login unsuccessful",
-                      "name":"login"
-                    });
+          res.json(undefined);    //Send undefined as client checks it for ng-hide/ng-show
       }else{
         /*
         * We have to log the user in because we are using XHR post to send the credentials not the server side route (submit form)
