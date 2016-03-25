@@ -1,0 +1,52 @@
+<div ng-hide = user.isAuthenticated()>
+  <p>
+    <h1 class="text-center">Welcome to Training and placement portal of NITH</h1>
+    <h3 class="text-center">Session: 2015-2016</h3>
+  </p>
+  <br />
+  <center>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginbox">
+      Enter here
+    </button>
+  </center>
+  <!-- Modal -->
+  <div class="modal fade" id="loginbox" tabindex="-1" role="dialog" aria-labelledby="loginbox">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title text-center" id="myModalLabel">Login form</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label for="username" class="col-md-1 col-md-offset-1 control-label">Username</label>
+                <div class="col-md-8 col-md-offset-1">
+                  <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                    <input type="text" class="form-control" placeholder="Enter your Roll no." ng-model="username">
+                  </div>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="password" class="col-md-1 col-md-offset-1 control-label">Password</label>
+                <div class="col-md-8 col-md-offset-1">
+                  <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-eye-close"></span></div>
+                    <input type="password" class="form-control" placeholder="Password" ng-model="password">
+                  </div>
+                </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-6 col-md-offset-3">
+                <button type="button" data-dismiss="modal" class="btn btn-primary glyphicon glyphicon-align-justify" ng-click="signIn(username, password)"> Signin</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

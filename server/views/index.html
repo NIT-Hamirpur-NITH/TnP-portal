@@ -9,18 +9,11 @@
     <link href="stylesheets/style.css" rel="stylesheet">
   </head>
   <body ng-app="tnp">
-    <nav class="navbar navbar-default">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">TnP</a>
-        </div>
-      </div>
-    </nav>
+
+    <div ng-include src="'partials/header.html'"></div>
 
     <div class="container">
-      <p>
-        <h1 class="text-center">Welcome to Training and placement portal of NITH</h1>
-      </p>
+      <!-- All the views go here -->
       <div ng-view></div>
     </div>
 
@@ -32,10 +25,11 @@
     <script src="/lib/angular-route/angular-route.min.js"></script>
     <script src="/app/app.js"></script>
     <!-- CONTROLLERS -->
-    <script src="/app/controllers/loginCtrl.js"></script>
+    <script src="/app/controllers/authCtrl.js"></script>
 
     <!-- SERVICES -->
-    <script src="/app/services/login.js"></script>
+    <script src="/app/services/auth.js"></script>
+    <script src="/app/services/userIdentity.js"></script>
 
     <!-- Scripts end here -->
   </body>
