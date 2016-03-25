@@ -1,4 +1,4 @@
-var app = angular.module('tnp',['ngResource', 'ngRoute']);
+var app = angular.module('tnp',['ngResource', 'ngRoute', 'ngCookies']);
 
 app.config(function($routeProvider, $locationProvider){
 
@@ -11,7 +11,7 @@ app.config(function($routeProvider, $locationProvider){
     })
     .when('/home', {
       templateUrl: 'partials/home',
-      controller: 'authCtrl'
+      controller: 'homeCtrl'
     })
     .otherwise({redirectTo: '/'})
 });
