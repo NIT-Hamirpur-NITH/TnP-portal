@@ -5,11 +5,11 @@ app.factory('userIdentity', function($cookies){
   }else{
     var retUser = undefined;
   }
-  
+
   return {
       authUser : retUser,
       isAuthenticated : function(){
-        return !!this.authUser;
+        return this.authUser;
       }
   }
 });
