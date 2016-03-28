@@ -3,7 +3,8 @@ var schema = mongoose.Schema;
 
 var userSchema = new schema ({
 	username: {type: Number, required: true, unique: true},
-	password: {type: String, required: true}	//EDIT
+	password: {type: String, required: true},	//EDIT
+	roles: [String]
 });
 
 var userModel = mongoose.model('users', userSchema);

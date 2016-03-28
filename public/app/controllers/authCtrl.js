@@ -1,14 +1,14 @@
-app.controller('authCtrl', function($scope,$window, $location, auth, userIdentity){
+app.controller('authCtrl', function($scope, $window, $location, authService, identityService){
 
-  if(userIdentity.isAuthenticated()){
-    $scope.user = userIdentity;
+  if(identityService.isAuthenticated()){
+    $scope.user = identityService;
     $location.path('/home');
   }
 
   $scope.signIn = function(username, password){
-    auth.loginUser(username, password).
+    authService.loginUser(username, password).
     then (function(data){
-      if(userIdentity.isAuthenticated()){
+      if(identityService.isAuthenticated()){
         $window.location.href = '/home';    //A full page reload required so that the set cookie is accessible everywhere
       }else{
         $location.path('/');
@@ -19,7 +19,7 @@ app.controller('authCtrl', function($scope,$window, $location, auth, userIdentit
   }
 
   $scope.signOut = function(){
-    auth.logoutUser().
+    authService.logoutUser().
     then (function(data){
       $scope.username = "";
       $scope.password = "";

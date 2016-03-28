@@ -1,5 +1,5 @@
-app.controller('homeCtrl', function($scope, userIdentity){
-  if(userIdentity.isAuthenticated()){
-    $scope.user = userIdentity;
+app.controller('homeCtrl', function($scope, identityService){
+  if(identityService.isAuthenticated()){
+    $scope.user = identityService;
   }
 });
