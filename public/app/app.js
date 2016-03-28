@@ -1,25 +1,34 @@
 var app = angular.module('tnp',['ngResource', 'ngRoute', 'ngCookies']);
 
+app.run(function ($rootScope, $location) {
+    $rootScope.$on('$routeChangeError', function (evt, current, previous, rejection) {
+        if (rejection === 'noAuth') {
+            $location.path('/');
+        }
+    });
+});
+
+var routeCheck = {
+  admin: {
+    auth: function(authService){
+      return authService.authorizeRole('admin');
+    }
+  },
+  user: {
+    auth: function(authService){
+      return authService.authorizeRole('user');
+    }
+  },
+  tpr: {
+    auth: function(authService){
+      return authService.authorizeRole('tpr');
+    }
+  }
+}
+
 app.config(function($routeProvider, $locationProvider){
 
   $locationProvider.html5Mode({ enabled: true, requireBase: false });
-  var routeCheck = {
-    admin: {
-      auth: function(authService){
-        return authService.authorizeRole('admin');
-      }
-    },
-    user: {
-      auth: function(authService){
-        return authService.authorizeRole('user');
-      }
-    },
-    tpr: {
-      auth: function(authService){
-        return authService.authorizeRole('tpr');
-      }
-    }
-  }
 
   $routeProvider
     .when('/', {

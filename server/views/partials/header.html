@@ -7,6 +7,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">National Institute of Technology, Hamirpur</a></li>
         <li><a ng-click="signOut()" ng-show = user.isAuthenticated() style="cursor:pointer">Logout</a></li>
+        <li><a href="/users" ng-show = user.isAuthorized('admin') style="cursor:pointer">Admin</a></li>
       </ul>
     </div>
   </div>

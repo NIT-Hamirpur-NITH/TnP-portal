@@ -9,10 +9,10 @@ app.factory('identityService', function($cookies){
   return {
       authUser : retUser,
       isAuthenticated : function(){
-        return this.authUser;
+        return !!this.authUser;
       },
-      isAuthorized: function(role){
-        return this.authUser && this.authUser.roles.indexOf(role) > -1
+      isAuthorized : function(role){
+        return (!!this.authUser && (!!this.authUser.roles.indexOf(role) > -1));
       }
   }
 });
