@@ -6,7 +6,7 @@ app.factory('authService', function($http, $q, identityService, $cookies){
       .success(function(data){
         var putData = JSON.stringify(data.user);    //JSON.stringify converting the response into a string
         $cookies.put('userCookie', putData);    //Cookie stores data as string
-        identityService.authUser = $cookies.get('userCookie');
+        identityService.currentUser = $cookies.get('userCookie');
         deferred.resolve(data);
       })
       .error(function(status){
@@ -20,7 +20,7 @@ app.factory('authService', function($http, $q, identityService, $cookies){
       $http({method: 'POST', url: '/api/logout'})
       .success(function(data){
         $cookies.remove('userCookie');
-        identityService.authUser = undefined;
+        identityService.currentUser = undefined;
         deferred.resolve(data);
       })
       .error(function(status){
@@ -31,6 +31,22 @@ app.factory('authService', function($http, $q, identityService, $cookies){
 
     authorizeRole: function(role){
       if(identityService.isAuthorized(role)){
+        return true;
+      }else{
+        return $q.reject('noAuth');
+      }
+    },
+
+    authorize: function(){
+      if(identityService.isAuthenticated()){
+        return true;
+      }else{
+        return $q.reject('noAuth');
+      }
+    },
+
+    noAuthorize: function(){
+      if(!(identityService.isAuthenticated())){
         return true;
       }else{
         return $q.reject('noAuth');

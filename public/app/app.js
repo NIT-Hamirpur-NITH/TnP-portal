@@ -3,20 +3,27 @@ var app = angular.module('tnp',['ngResource', 'ngRoute', 'ngCookies']);
 app.run(function ($rootScope, $location) {
     $rootScope.$on('$routeChangeError', function (evt, current, previous, rejection) {
         if (rejection === 'noAuth') {
-            $location.path('/');
+          $location.path('/home');
+        }else{
+          console.log('Authenticated.');
         }
     });
 });
 
 var routeCheck = {
-  admin: {
-    auth: function(authService){
-      return authService.authorizeRole('admin');
+  noUser: {
+    auth: function($q, authService){
+      return authService.noAuthorize();
     }
   },
   user: {
     auth: function(authService){
-      return authService.authorizeRole('user');
+      return authService.authorize();
+    }
+  },
+  admin: {
+    auth: function(authService){
+      return authService.authorizeRole('admin');
     }
   },
   tpr: {
@@ -33,11 +40,13 @@ app.config(function($routeProvider, $locationProvider){
   $routeProvider
     .when('/', {
       templateUrl: 'partials/login',
-      controller: 'authCtrl'
+      controller: 'authCtrl',
+      resolve: routeCheck.noUser
     })
     .when('/home', {
       templateUrl: 'partials/home',
-      controller: 'homeCtrl'
+      controller: 'homeCtrl',
+      resolve: routeCheck.user
     })
     .when('/users',{
       templateUrl: 'partials/users',

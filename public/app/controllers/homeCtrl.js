@@ -1,3 +1,3 @@
 app.controller('homeCtrl', function($scope, identityService){
-  $scope.user = identityService;
+  $scope.currentUser = JSON.parse(identityService.currentUser);
 });
