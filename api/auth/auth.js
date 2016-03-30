@@ -33,8 +33,7 @@ exports.alreadyLoggedIn = function(req, res, next){
         "message":"You are already logged in.",
         "user": req.user
       });
-  }
-  else{
+  }else{
       next();
   }
 }
@@ -46,11 +45,21 @@ exports.logout = function(req, res, next){
       "message":"User logged out.",
       "user":undefined
     });
-  }
-  else{
+  }else{
     res.json({
       "message":"Not logged in.",
       "user":undefined
     });
+  }
+}
+
+exports.isLoggedIn = function(req, res, next){
+  if(req.isAuthenticated()){
+    next();
+  }else{
+    res.json({
+      "message":"Not logged in.",
+      "user":undefined
+    })
   }
 }
