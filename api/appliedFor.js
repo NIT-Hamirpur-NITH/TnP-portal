@@ -4,22 +4,29 @@ var localAuth = require('../api/auth/localAuth')();
 var Companies = require('../models/companies');
 
 exports.appliedFor =  function(req, res, next){
-  		User.find({_id: req.user._id},function(err,user){
-        var user = JSON.stringify(user);
-        console.log('username = ' + user.username);
-        var array = ["56fc329c1cd286720becb9dd"];
-        Companies.find({_id: {"$in":array}}), function(err, company){
-          console.log('company = '+company);
-          if(company){
-            res.json({
-              "appliedFor":company
-            })
-          }else{
-            res.json({
-              "message":"Not applied",
-              "company":undefined
-            })
-          }
+	User.findOne({_id: req.user._id}).exec(function(err, user){
+    if(err)
+      throw err;
+    if(!user){
+      res.json({
+        "status":"error.",
+        "message":"No user found."
+      })
+    }else{
+      Companies.findOne({_id: {$in:user.appliedFor}}).exec(function(err, company){
+        if(err)
+          throw err;
+        if(!company){
+          res.json({
+            "message":"Not applied",
+            "company":undefined
+          });
+        }else{
+          res.json({
+            "appliedFor":company
+          });
         }
       });
-};
+    }
+  });
+}
