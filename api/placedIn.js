@@ -3,7 +3,7 @@ var User = require('../models/users');
 var localAuth = require('../api/auth/localAuth')();
 var Companies = require('../models/companies');
 
-exports.appliedFor =  function(req, res, next){
+exports.placedIn =  function(req, res, next){
 	User.findOne({_id: req.user._id}).exec(function(err, user){
     if(err)
       throw err;
@@ -13,17 +13,17 @@ exports.appliedFor =  function(req, res, next){
         "message":"No user found."
       })
     }else{
-      Companies.findOne({_id: {$in:user.appliedFor}}).exec(function(err, company){
+      Companies.findOne({_id: {$in:user.placedIn}}).exec(function(err, company){
         if(err)
           throw err;
         if(!company){
           res.json({
-            "message":"Not applied",
+            "message":"Not Placed yet",
             "company":undefined
           });
         }else{
           res.json({
-            "appliedFor":company.name
+            "placedIn":company.name
           });
         }
       });
