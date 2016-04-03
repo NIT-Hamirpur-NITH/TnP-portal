@@ -13,6 +13,21 @@ app.controller('authCtrl', function($scope, $window, $location, authService, ide
     });
   }
 
+  $scope.signUp = function(){
+    var newUser = {
+      username : $scope.username,
+      name : $scope.name,
+      branch : $scope.branch,
+      password : $scope.password
+    }
+    authService.createUser(newUser).
+    then (function(data){
+      $location.path('/');
+    }, function(status){
+      console.log(status);
+    });
+  }
+
   $scope.signOut = function(){
     authService.logoutUser().
     then (function(data){

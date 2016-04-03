@@ -53,5 +53,10 @@ app.config(function($routeProvider, $locationProvider){
       controller: 'usersCtrl',
       resolve: routeCheck.admin
     })
+    .when('/register',{
+      templateUrl: 'partials/register',
+      controller: 'authCtrl',
+      resolve: routeCheck.noUser
+    })
     .otherwise({redirectTo: '/'})
 });
