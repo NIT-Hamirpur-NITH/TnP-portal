@@ -1,6 +1,8 @@
 app.controller('authCtrl', function($scope, $window, $location, authService, identityService){
 
   $scope.identity = identityService;
+  if(identityService.isAuthenticated())
+    $scope.currentUser = JSON.parse(identityService.currentUser);
 
   $scope.signIn = function(username, password){
     authService.loginUser(username, password).
