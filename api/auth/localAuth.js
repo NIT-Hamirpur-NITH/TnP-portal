@@ -4,9 +4,6 @@ var User = require('../../models/users');
 
 module.exports = function(){
   passport.use('local-login', new LocalStrategy(function(username, password, done) {
-      /*
-       * Create an username check
-       */
       User.findOne({ 'username': username, 'password': password }).exec(function (err, user) {
           if (err)
               return done(err);

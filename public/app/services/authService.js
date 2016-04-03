@@ -4,11 +4,11 @@ app.factory('authService', function($http, $q, identityService, $cookies){
       var deferred = $q.defer();
       $http({
         method: 'POST',
+        url: '/api/login',
         data: {
           username:username,
           password:password
-        },
-        url: '/api/login'
+        }
       })
       .success(function(data){
         var putData = JSON.stringify(data.user);    //JSON.stringify converting the response into a string
@@ -26,8 +26,8 @@ app.factory('authService', function($http, $q, identityService, $cookies){
       var deferred = $q.defer();
       $http({
         method: 'POST',
-        data: newUser,
-        url: '/api/register'
+        url: '/api/register',
+        data: newUser
       })
       .success(function(data){
         deferred.resolve(data);
