@@ -1,4 +1,4 @@
-var app = angular.module('tnp',['ngResource', 'ngRoute', 'ngCookies']);
+var app = angular.module('tnp',['ngResource', 'ngRoute', 'ngCookies', 'ngMaterial']);
 
 app.run(function ($rootScope, $location) {
     $rootScope.$on('$routeChangeError', function (evt, current, previous, rejection) {
