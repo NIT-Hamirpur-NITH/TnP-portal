@@ -14,6 +14,20 @@ app.factory('identityService', function($cookies){
       }else{
         return undefined;
       }
+    },
+    role : function(){
+      if(!!this.isAuthenticated()){
+        currentUser = JSON.parse($cookies.get('userCookie'));
+        if(currentUser.roles.indexOf("admin") > -1){
+          return "admin";
+        }else if(currentUser.roles.indexOf("tpr") > -1){
+          return "tpr";
+        }else if(currentUser.roles.indexOf("user") > -1){
+          return "user";
+        }else{
+          return undefined;
+        }
+      }
     }
   }
 });
