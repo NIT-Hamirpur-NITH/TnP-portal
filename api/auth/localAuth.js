@@ -28,7 +28,6 @@ module.exports = function(){
                         if (err) {
                             throw err;
                         }
-                        console.log(newUser);
                         return done(null, newUser);
                     });
           }

@@ -3,7 +3,7 @@ var User = require('../models/users');
 var localAuth = require('../api/auth/localAuth')();
 var Companies = require('../models/companies');
 
-exports.appliedFor =  function(req, res, next){
+exports.appliedFor = function(req, res, next){
 	User.findOne({_id: req.user._id}).exec(function(err, user){
     if(err)
       throw err;
@@ -31,7 +31,7 @@ exports.appliedFor =  function(req, res, next){
   });
 }
 
-exports.placedIn =  function(req, res, next){
+exports.placedIn = function(req, res, next){
 	User.findOne({_id: req.user._id}).exec(function(err, user){
     if(err)
       throw err;
@@ -59,7 +59,7 @@ exports.placedIn =  function(req, res, next){
   });
 }
 
-exports.listAll =  function(req, res, next){
+exports.listAll = function(req, res, next){
   Companies.find().exec(function(err, companies){
     if(err)
       throw err;
@@ -76,15 +76,15 @@ exports.listAll =  function(req, res, next){
   });
 }
 
-exports.canApply =  function(req, res, next){
+exports.canApply = function(req, res, next){
+	var canApplyto = function(callback){
+		Companies.find({deadline: {$gte: Date.now()}}).exec(function(err, companies){
+			callback(companies);
+		});
+	}
 	canApplyto(function (companies) {
-        res.json({
-          "message":companies
-      });
-		}
-		var canApplyto = function(callback){
-			Companies.find({deadline: {$gte: Date.now()}}).exec(function(err, companies){
-				callback(companies);
+				res.json({
+					"message":companies
 			});
-		}
+		});
 }
