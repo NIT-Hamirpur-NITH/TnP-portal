@@ -5,7 +5,7 @@ module.exports = {
   development: {
     port: process.env.PORT || 8000,
     rootPath: rootPath,
-    db: 'mongodb://localhost/tnp'
+    db: 'mongodb://127.0.0.1/tnp'
   },
   production: {
     port: process.env.PORT || 80,
