@@ -4,8 +4,6 @@ app.run(function ($rootScope, $location) {
     $rootScope.$on('$routeChangeError', function (evt, current, previous, rejection) {
         if (rejection === 'noAuth') {
           $location.path('/home');
-        }else{
-          console.log('Authenticated.');
         }
     });
 });
@@ -57,6 +55,11 @@ app.config(function($routeProvider, $locationProvider){
       templateUrl: 'partials/register',
       controller: 'authCtrl',
       resolve: routeCheck.noUser
+    })
+    .when('/invite',{
+      templateUrl: 'partials/sendInvite',
+      controller: 'inviteCtrl',
+      resolve: routeCheck.tpr
     })
     .otherwise({redirectTo: '/'})
 });
