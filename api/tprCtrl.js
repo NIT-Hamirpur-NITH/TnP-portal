@@ -2,6 +2,8 @@ var passport = require('passport');
 var User = require('../models/users');
 var localAuth = require('../api/auth/localAuth')();
 var Company = require('../models/companies');
+var XLSX = require('xlsx');
+var workbook = XLSX.readFile('data/database/database.xlsx');
 
 
 exports.addCompany =  function(req, res, next){
@@ -45,11 +47,31 @@ exports.editCompany =  function(req, res, next){
         if(input.btech)
           company.eligibility.btech=input.btech;
         if(input.process)
-            company.process=input.process;
+          company.process=input.process;
 
         company.save();
         res.json({
           "message":company
         });
       });
+}
+
+exports.sendInvite = function(req, res, next){
+  var sheet = workbook.SheetNames[0];
+  var worksheet = workbook.Sheets[sheet];
+
+  var json = XLSX.utils.sheet_to_json(worksheet);
+  for(i = 0; i < json.length; i++){
+    var obj = json[i];
+    var newUser = new User(obj);
+    newUser.roles = ["user"];
+    newUser.save(function (err) {
+      if (err) {
+          throw err;
+      }
+    });
+  }
+  res.json({
+    "message":"Invitation sent."
+  });
 }
