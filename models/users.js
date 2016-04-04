@@ -9,9 +9,9 @@ var userSchema = new schema ({
 	appliedFor: [String],
 	placedIn: [String],
 	roles: [String],
-	tenth: {type: String, required: true},
-	twelfth: {type: String, required: true},
-	btech: {type: String, required: true}
+	tenth: {type: Number, required: true},
+	twelfth: {type: Number, required: true},
+	btech: {type: Number, required: true}
 });
 
 var userModel = mongoose.model('users', userSchema);

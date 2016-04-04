@@ -4,9 +4,11 @@ app.factory('identityService', function($cookies){
 
   return {
     currentUser : currentUser,
+
     isAuthenticated : function(){
       return !!this.currentUser;
     },
+
     isAuthorized : function(role){
       if(!!this.isAuthenticated()){
         currentUser = JSON.parse($cookies.get('userCookie'));
@@ -15,6 +17,7 @@ app.factory('identityService', function($cookies){
         return undefined;
       }
     },
+
     role : function(){
       if(!!this.isAuthenticated()){
         currentUser = JSON.parse($cookies.get('userCookie'));
