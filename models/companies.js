@@ -12,7 +12,8 @@ var companiesSchema = new schema({
 		twelfth: {type: String},
 		btech: {type: String}
 	},
-	process: {type:String}
+	process: {type:String},
+	deadline: {type: Date}
 });
 
 var companiesModel = mongoose.model('companies',companiesSchema);
