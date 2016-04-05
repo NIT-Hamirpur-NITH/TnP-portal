@@ -37,27 +37,27 @@ app.config(function($routeProvider, $locationProvider){
 
   $routeProvider
     .when('/', {
-      templateUrl: 'partials/login',
+      templateUrl: 'partials/login.html',
       controller: 'authCtrl',
       resolve: routeCheck.noUser
     })
     .when('/home', {
-      templateUrl: 'partials/home',
+      templateUrl: 'partials/home.html',
       controller: 'homeCtrl',
       resolve: routeCheck.user
     })
     .when('/users',{
-      templateUrl: 'partials/users',
+      templateUrl: 'partials/users.html',
       controller: 'usersCtrl',
       resolve: routeCheck.admin
     })
     .when('/register',{
-      templateUrl: 'partials/register',
+      templateUrl: 'partials/register.html',
       controller: 'authCtrl',
       resolve: routeCheck.noUser
     })
     .when('/invite',{
-      templateUrl: 'partials/sendInvite',
+      templateUrl: 'partials/sendInvite.html',
       controller: 'inviteCtrl',
       resolve: routeCheck.tpr
     })
