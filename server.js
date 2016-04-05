@@ -20,11 +20,8 @@ require('./server/config/express')(app, config);
 var setRoutes = require('./routes/setRoutes');
 var apiRoutes = require('./routes/apiRoutes');
 
-app.use('/', setRoutes);
 app.use('/api', apiRoutes);
-app.get('*', function(req, res){
-  res.redirect('/');
-});
+app.use('*', setRoutes);
 
 server.listen(config.port, function(){
  	console.log(Date(Date.now()) + '\nServer running on port: ' + config.port);
