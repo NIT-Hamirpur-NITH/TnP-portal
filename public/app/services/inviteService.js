@@ -1,6 +1,6 @@
 app.factory('inviteService', function($http, $q, identityService, $cookies){
   return {
-    sendInvite : function(){
+    inviteAll : function(){
       var deferred = $q.defer();
       $http({
         method: 'POST',

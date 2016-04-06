@@ -56,7 +56,9 @@ exports.editCompany =  function(req, res, next){
       });
 }
 
-exports.sendInvite = function(req, res, next){
+exports.inviteAll = function(req, res, next){
+  //Invite all from database and send mail to everyone.
+  /*
   var sheet = workbook.SheetNames[0];
   var worksheet = workbook.Sheets[sheet];
 
@@ -65,24 +67,38 @@ exports.sendInvite = function(req, res, next){
     var obj = json[i];
     var newUser = new User(obj);
     newUser.roles = ["user"];
+    newUser.password = "root";
     newUser.save(function (err) {
       if (err) {
           throw err;
       }
     });
   }
-  res.json({
-    "message":"Invitation sent."
-  });
+  */
+  User.find({}).exec(function(err, user){
+    if(err)
+      throw err;
+    for(i=0; i<user.length;i++){
+      var obj = user[i];
+      obj.invite = true;
+      obj.save(function(err){
+        if(err)
+          throw err;
+      });
+    }
+    res.json({
+      "message":"Invitation sent to all.",
+      "user":user
+    });
+  })
 }
 
 exports.getDatabase = function(req, res, next){
-  var sheet = workbook.SheetNames[0];
-  var worksheet = workbook.Sheets[sheet];
-
-  var json = XLSX.utils.sheet_to_json(worksheet);
-
-  res.json({
-    "database":json
+  User.find({}).sort({sno:1}).exec(function(err,user){
+    if(err)
+      throw err;
+    res.json({
+      "user":user
+    });
   });
 }

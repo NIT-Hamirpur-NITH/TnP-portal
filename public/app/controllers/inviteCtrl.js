@@ -3,15 +3,14 @@ app.controller('inviteCtrl', function($scope, $location, inviteService){
   inviteService.getDatabase().
   then (function(data){
     $scope.database = data;
-    console.log(data);
   },function(status){
     console.log(status);
   });
 
-  $scope.sendInvite = function(){
-    inviteService.sendInvite().
+  $scope.inviteAll = function(){
+    inviteService.inviteAll().
     then (function(data){
-      console.log(data);
+      // $scope.database = data.user;
       $location.path('/home');
     },function(status){
       console.log(status);
