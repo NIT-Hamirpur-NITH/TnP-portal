@@ -1,1 +1,14 @@
+<table border="1" ng-repeat="data in database">
+  <th>
+    <td>Username</td>
+    <td>Name</td>
+    <td>Branch</td>
+  </th>
+  <tr ng-repeat="user in data">
+    <td>S.no</td>
+    <td>{{user.username}}</td>
+    <td>{{user.name}}</td>
+    <td>{{user.branch}}</td>
+  </tr>
+</table>
 <button type="button" class="btn btn-primary glyphicon glyphicon-align-justify" ng-click="sendInvite()"> Invite</button>
