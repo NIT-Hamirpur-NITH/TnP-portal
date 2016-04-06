@@ -75,3 +75,14 @@ exports.sendInvite = function(req, res, next){
     "message":"Invitation sent."
   });
 }
+
+exports.getDatabase = function(req, res, next){
+  var sheet = workbook.SheetNames[0];
+  var worksheet = workbook.Sheets[sheet];
+
+  var json = XLSX.utils.sheet_to_json(worksheet);
+
+  res.json({
+    "database":json
+  });
+}

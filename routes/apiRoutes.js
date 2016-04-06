@@ -30,7 +30,10 @@ router.get('/company/canApply', auth.isLoggedIn, user.canApply);
 *TPR ROUTES
 */
 router.post('/invite', auth.isLoggedIn, roles.isTpr, tpr.sendInvite);
-
+router.get('/database', auth.isLoggedIn, roles.isTpr, tpr.getDatabase);
+router.get('*', function(req, res){
+  res.redirect('/');
+})
 /*
 *ADMIN ROUTES
 */
