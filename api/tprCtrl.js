@@ -94,11 +94,13 @@ exports.inviteAll = function(req, res, next){
 }
 
 exports.getDatabase = function(req, res, next){
-  User.find({}).sort({sno:1}).exec(function(err,user){
+  User.find({}).sort({sno:1}).exec(function(err,db){
     if(err)
       throw err;
+    if(!db)
+      console.log("No user");
     res.json({
-      "user":user
+      "user":db
     });
   });
 }

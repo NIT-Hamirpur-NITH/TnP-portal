@@ -1,5 +1,4 @@
 var passport = require('passport');
-var User = require('../../models/users');
 var localAuth = require('./localAuth')();
 
 exports.loginAuthenticate = function(req, res, next) {
@@ -9,7 +8,7 @@ exports.loginAuthenticate = function(req, res, next) {
       }
       if(!user){
           res.json({
-            "user":undefined      //Send undefined as client checks it for ng-hide/ng-show
+            "user":undefined
           });
       }else{
         req.logIn(user, function(err){

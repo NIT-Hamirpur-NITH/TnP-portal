@@ -1,6 +1,4 @@
 var passport = require('passport');
-var User = require('../../models/users');
-var localAuth = require('./localAuth')();
 
 exports.isAdmin= function(req, res, next){
       if(req.user.roles.indexOf("admin")>-1){

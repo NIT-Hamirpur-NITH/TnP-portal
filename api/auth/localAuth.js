@@ -16,8 +16,9 @@ module.exports = function(){
           Tpr.findOne({ 'username': username, 'password': password }).exec(function (err, tpr) {
               if (err)
                   return done(err);
-              if (tpr)
+              if (tpr){
                   return done(null, tpr);
+              }
               else{
                 User.findOne({ 'username': username, 'password': password }).exec(function (err, user) {
                     if (err)
@@ -60,8 +61,20 @@ module.exports = function(){
    });
 
   passport.deserializeUser(function (id, done) {
-     User.findOne({ '_id': id }).exec(function (err, user) {
-         done(err, user);
-     });
+    Admin.findOne({ '_id': id }).exec(function (err, admin) {
+      if(admin)
+        done(err, admin);
+      else{
+        Tpr.findOne({ '_id': id }).exec(function (err, tpr) {
+          if(tpr)
+            done(err, tpr);
+          else{
+            User.findOne({ '_id': id }).exec(function (err, user) {
+                done(err, user);
+            });
+          }
+        });
+      }
+    });
   });
 }
