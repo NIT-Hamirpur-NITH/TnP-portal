@@ -57,7 +57,7 @@ app.config(function($routeProvider, $locationProvider){
       resolve: routeCheck.noUser
     })
     .when('/invite',{
-      templateUrl: 'partials/sendInvite.html',
+      templateUrl: 'partials/invite.html',
       controller: 'inviteCtrl',
       resolve: routeCheck.tpr
     })
