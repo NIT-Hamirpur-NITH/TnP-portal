@@ -9,7 +9,6 @@ var roles = require('../api/auth/roles');
 *AUTHENTICATION ROUTES
 */
 router.post('/login', auth.alreadyLoggedIn, auth.loginAuthenticate);
-router.post('/register', auth.alreadyLoggedIn, auth.signupAuthenticate);
 router.post('/logout', auth.logout);
 
 /*
@@ -37,4 +36,6 @@ router.get('*', function(req, res){
 /*
 *ADMIN ROUTES
 */
+router.post('/addtpr', auth.isLoggedIn, roles.isAdmin, auth.signupAuthenticate);
+
 module.exports = router;

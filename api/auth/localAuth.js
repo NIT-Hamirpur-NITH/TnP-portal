@@ -35,15 +35,16 @@ module.exports = function(){
   }));
 
   passport.use('local-signup', new LocalStrategy({ passReqToCallback: true },function(req, username, password, done) {
-      User.findOne({ 'username': username }).exec(function (err, user) {
+      Tpr.findOne({ 'username': username }).exec(function (err, tpr) {
           if (err)
               return done(err);
-          if (user)
+          if (tpr)
               return done(null, false);
           else {
             var input = req.body;
-            var newUser = new User(input);
-            newUser.roles = ["user"];
+            var newUser = new Tpr(input);
+            newUser.roles = ["tpr"];
+            newUser.companies = [];
             newUser.save(function (err) {
                         if (err) {
                             throw err;

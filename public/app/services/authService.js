@@ -26,7 +26,7 @@ app.factory('authService', function($http, $q, identityService, $cookies){
       var deferred = $q.defer();
       $http({
         method: 'POST',
-        url: '/api/register',
+        url: '/api/addtpr',
         data: newUser
       })
       .success(function(data){

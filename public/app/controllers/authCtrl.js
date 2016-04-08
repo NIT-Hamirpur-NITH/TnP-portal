@@ -13,13 +13,15 @@ app.controller('authCtrl', function($scope, $window, $location, authService, ide
     });
   }
 
-  $scope.signUp = function(){
+  $scope.addtpr = function(){
     var newUser = {
       username : $scope.username,
       name : $scope.name,
       branch : $scope.branch,
+      email : $scope.email,
       password : $scope.password
     }
+
     authService.createUser(newUser).
     then (function(data){
       $location.path('/');

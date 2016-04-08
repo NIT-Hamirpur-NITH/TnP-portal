@@ -46,15 +46,10 @@ app.config(function($routeProvider, $locationProvider){
       controller: 'homeCtrl',
       resolve: routeCheck.user
     })
-    .when('/users',{
-      templateUrl: 'partials/users.html',
-      controller: 'usersCtrl',
-      resolve: routeCheck.admin
-    })
-    .when('/register',{
-      templateUrl: 'partials/register.html',
+    .when('/addtpr',{
+      templateUrl: 'partials/addtpr.html',
       controller: 'authCtrl',
-      resolve: routeCheck.noUser
+      resolve: routeCheck.admin
     })
     .when('/invite',{
       templateUrl: 'partials/invite.html',
