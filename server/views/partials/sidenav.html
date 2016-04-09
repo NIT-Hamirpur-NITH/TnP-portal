@@ -1,0 +1,19 @@
+<div ng-controller="authCtrl" ng-show="identity.isAuthenticated()">
+  <div ng-switch="identity.role()">
+    <ul ng-switch-when="admin" class="nav nav-pills nav-stacked">
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/">Database</a></li>
+      <li><a href="/addtpr">Add TPR</a></li>
+    </ul>
+    <ul ng-switch-when="tpr" class="nav nav-pills nav-stacked">
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/">Database</a></li>
+      <li><a href="/invite">Invite</a></li>
+    </ul>
+    <ul ng-switch-when="user" class="nav nav-pills nav-stacked">
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/">Database</a></li>
+      <li><a href="/">Applied for</a></li>
+    </ul>
+  </div>
+</div>
