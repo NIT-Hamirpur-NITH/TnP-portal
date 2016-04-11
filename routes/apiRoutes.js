@@ -31,13 +31,13 @@ router.get('/company/canApply', auth.isLoggedIn, user.canApply);
 */
 router.post('/invite', auth.isLoggedIn, roles.isTpr, tpr.inviteAll);
 router.get('/database', auth.isLoggedIn, roles.isTpr, tpr.getDatabase);
-router.get('*', function(req, res){
-  res.redirect('/');
-})
 /*
 *ADMIN ROUTES
 */
 router.post('/admin/addtpr', auth.isLoggedIn, roles.isAdmin, auth.signupAuthenticate);
 router.get('/database/:branch', auth.isLoggedIn, roles.isAdmin, admin.getDatabase);
 
+router.get('*', function(req, res){
+  res.redirect('/');
+})
 module.exports = router;
