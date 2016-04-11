@@ -1,6 +1,5 @@
 var passport = require('passport');
 var User = require('../models/users');
-var localAuth = require('../api/auth/localAuth')();
 var Company = require('../models/companies');
 var XLSX = require('xlsx');
 var workbook = XLSX.readFile('data/database/database.xlsx');

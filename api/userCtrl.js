@@ -1,6 +1,5 @@
 var passport = require('passport');
 var User = require('../models/users');
-var localAuth = require('../api/auth/localAuth')();
 var Companies = require('../models/companies');
 
 exports.appliedFor = function(req, res, next){

@@ -3,6 +3,7 @@ var router = express.Router();
 var auth = require('../api/auth/auth');
 var user = require('../api/userCtrl');
 var tpr = require('../api/tprCtrl');
+var admin = require('../api/adminCtrl');
 var roles = require('../api/auth/roles');
 
 /*
