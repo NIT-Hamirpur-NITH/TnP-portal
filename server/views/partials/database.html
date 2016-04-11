@@ -1,39 +1,24 @@
 <div class="col-md-10">
-  <div ng-switch on="identity.role()">
-    <div ng-switch-when="admin">
-      <ul>
-        <li><a href="">Civil</a></li>
-        <li><a href="">EEE</a></li>
-        <li><a href="">MED</a></li>
-        <li><a href="">ECE</a></li>
-        <li><a href="">CSE</a></li>
-        <li><a href="">Architecture</a></li>
-        <li><a href="">Chemical</a></li>
-      </ul>
-    </div>
-    <div ng-switch-when="tpr">
-      <div ng-if="!database.db">
-        <h1 class="text-center">No database uploaded.</h1><br />
-      </div>
-      <div ng-if="database.db">
-        <table border="1" class="table table-bordered table-hover table-striped">
-          <tr class="info">
-            <th>S.no</th>
-            <th>Username</th>
-            <th>Name</th>
-            <th>Branch</th>
-            <th>Invitation</th>
-          </tr>
-          <tr ng-repeat="data in database.user">
-            <td>{{data.sno}}</td>
-            <td>{{data.username}}</td>
-            <td>{{data.name}}</td>
-            <td>{{data.branch}}</td>
-            <td ng-hide="data.invite"><button type="button" class="btn btn-primary">Send Invite</button></td>
-            <td ng-show="data.invite"><button type="button" class="btn btn-success" disabled>Invitation Sent</button></td>
-          </tr>
-        </table>
-      </div>
-    </div>
+  <div ng-if="!database.db">
+    <h1 class="text-center">No database uploaded.</h1><br />
+  </div>
+  <div ng-if="database.db">
+    <table border="1" class="table table-bordered table-hover table-striped">
+      <tr class="info">
+        <th>S.no</th>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Branch</th>
+        <th>Invitation</th>
+      </tr>
+      <tr ng-repeat="data in database.user">
+        <td>{{data.sno}}</td>
+        <td>{{data.username}}</td>
+        <td>{{data.name}}</td>
+        <td>{{data.branch}}</td>
+        <td ng-hide="data.invite"><button type="button" class="btn btn-primary">Send Invite</button></td>
+        <td ng-show="data.invite"><button type="button" class="btn btn-success" disabled>Invitation Sent</button></td>
+      </tr>
+    </table>
   </div>
 </div>

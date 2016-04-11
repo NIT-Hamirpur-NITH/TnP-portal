@@ -14,28 +14,40 @@ var routeCheck = {
       return authService.noAuthorize();
     }
   },
+
   user: {
     auth: function(authService){
       return authService.authorize();
     }
   },
+
   admin: {
     auth: function(authService){
       return authService.authorizeRole('admin');
+    },
+    database: function(databaseService, $route){
+      return (databaseService.getDbByBranch($route.current.pathParams.branch)
+      .then (function(data){
+        return data;
+      },function(status){
+        console.log(status);
+      }))
     }
   },
+
   tpr: {
     auth: function(authService){
       return authService.authorizeRole('tpr');
     }
   },
+
   adminTpr:{
     auth:function(authService){
       return authService.authAdminTpr();
     },
-    database:function(databaseService){
-      return (databaseService.getDatabase().
-      then (function(data){
+    database: function(databaseService){
+      return (databaseService.getDatabase()
+      .then (function(data){
         return data;
       },function(status){
         console.log(status);
@@ -73,6 +85,11 @@ app.config(function($routeProvider, $locationProvider){
       templateUrl: 'partials/database.html',
       controller: 'databaseCtrl',
       resolve: routeCheck.adminTpr
+    })
+    .when('/db/:branch',{
+      templateUrl: 'partials/database.html',
+      controller: 'databaseCtrl',
+      resolve: routeCheck.admin
     })
     .otherwise({redirectTo: '/'})
 });

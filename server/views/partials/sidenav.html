@@ -3,7 +3,16 @@
     <div ng-switch="identity.role()">
       <ul ng-switch-when="admin" class="nav nav-pills nav-stacked active-link">
         <li class="active"><a href="/">Home</a></li>
-        <li><a href="/database">Database</a></li>
+        <li><a role="button" data-toggle="collapse" href="#submenu" aria-expanded="false" aria-controls="submenu">Database</a></li>
+          <ul class="collapse" id="submenu">
+            <li><a href="/db/civil">Civil</a></li>
+            <li><a href="/db/eee">EEE</a></li>
+            <li><a href="/db/med">MED</a></li>
+            <li><a href="/db/ece">ECE</a></li>
+            <li><a href="/db/cse">CSE</a></li>
+            <li><a href="/db/architecture">Architecture</a></li>
+            <li><a href="/db/chemical">Chemical</a></li>
+          </ul>
         <li><a href="/addtpr">Add TPR</a></li>
       </ul>
       <ul ng-switch-when="tpr" class="nav nav-pills nav-stacked active-link">
@@ -11,10 +20,14 @@
         <li><a href="/upload">Upload</a></li>
         <li><a href="/invite">Invite</a></li>
         <li><a href="/database">Database</a></li>
+        <li><a href="/">Post company</a></li>
+        <li><a href="/">Comapanies Visited</a></li>
       </ul>
       <ul ng-switch-when="user" class="nav nav-pills nav-stacked active-link">
         <li class="active"><a href="/">Home</a></li>
         <li><a href="/">Applied for</a></li>
+        <li><a href="/">Placed In</a></li>
+        <li><a href="/">Comapanies Visited</a></li>
       </ul>
     </div>
   </div>
