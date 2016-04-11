@@ -75,7 +75,7 @@ exports.inviteAll = function(req, res, next){
     });
   }
   */
-  User.find({}).exec(function(err, user){
+  User.find({branch:req.user.branch}).exec(function(err, user){
     if(err)
       throw err;
     for(i=0; i<user.length;i++){
@@ -94,7 +94,7 @@ exports.inviteAll = function(req, res, next){
 }
 
 exports.getDatabase = function(req, res, next){
-  User.find({}).sort({sno:1}).exec(function(err,db){
+  User.find({branch:req.user.branch}).sort({sno:1}).exec(function(err,db){
     if(err)
       throw err;
     if(!db)

@@ -1,20 +1,3 @@
 <div class="col-md-10">
-<table border="1" ng-repeat="data in database" class="table table-bordered table-hover table-striped">
-  <tr class="info">
-    <th>S.no</th>
-    <th>Username</th>
-    <th>Name</th>
-    <th>Branch</th>
-    <th>Invitation</th>
-  </tr>
-  <tr ng-repeat="user in data">
-    <td>{{user.sno}}</td>
-    <td>{{user.username}}</td>
-    <td>{{user.name}}</td>
-    <td>{{user.branch}}</td>
-    <td ng-hide="user.invite"><button type="button" class="btn btn-primary">Send Invite</button></td>
-    <td ng-show="user.invite"><button type="button" class="btn btn-success" disabled>Invitation Sent</button></td>
-  </tr>
-</table>
 <button type="button" class="btn btn-primary glyphicon glyphicon-align-justify" ng-click="inviteAll()"><span style="font-family:Lato; font-size:16px"> Invite All</span></button>
 </div>
