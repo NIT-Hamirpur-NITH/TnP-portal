@@ -1,5 +1,3 @@
-app.controller('databaseCtrl', function($scope, $location, $route, identityService){
-
-  $scope.identity = identityService;
+app.controller('databaseCtrl', function($scope, $route){
   $scope.database = $route.current.locals.database;
 });
