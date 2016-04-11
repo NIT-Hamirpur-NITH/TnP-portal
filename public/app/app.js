@@ -32,6 +32,14 @@ var routeCheck = {
   adminTpr:{
     auth:function(authService){
       return authService.authAdminTpr();
+    },
+    database:function(databaseService){
+      return (databaseService.getDatabase().
+      then (function(data){
+        return data;
+      },function(status){
+        console.log(status);
+      }))
     }
   }
 }
