@@ -12,11 +12,11 @@
       </ul>
     </div>
     <div ng-switch-when="tpr">
-      <div ng-if="!db">
+      <div ng-if="!database.db">
         <h1 class="text-center">No database uploaded.</h1><br />
       </div>
-      <div ng-if="db">
-        <table border="1" class="table table-bordered table-hover table-striped" ng-repeat="data in database">
+      <div ng-if="database.db">
+        <table border="1" class="table table-bordered table-hover table-striped">
           <tr class="info">
             <th>S.no</th>
             <th>Username</th>
@@ -24,13 +24,13 @@
             <th>Branch</th>
             <th>Invitation</th>
           </tr>
-          <tr ng-repeat="user in data">
-            <td>{{user.sno}}</td>
-            <td>{{user.username}}</td>
-            <td>{{user.name}}</td>
-            <td>{{user.branch}}</td>
-            <td ng-hide="user.invite"><button type="button" class="btn btn-primary">Send Invite</button></td>
-            <td ng-show="user.invite"><button type="button" class="btn btn-success" disabled>Invitation Sent</button></td>
+          <tr ng-repeat="data in database.user">
+            <td>{{data.sno}}</td>
+            <td>{{data.username}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.branch}}</td>
+            <td ng-hide="data.invite"><button type="button" class="btn btn-primary">Send Invite</button></td>
+            <td ng-show="data.invite"><button type="button" class="btn btn-success" disabled>Invitation Sent</button></td>
           </tr>
         </table>
       </div>
