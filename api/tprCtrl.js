@@ -96,10 +96,15 @@ exports.getDatabase = function(req, res, next){
   User.find({branch:req.user.branch}).sort({sno:1}).exec(function(err,db){
     if(err)
       throw err;
-    if(!db)
-      console.log("No user");
-    res.json({
-      "user":db
-    });
+    if(!db.length){
+      res.json({
+        "db":null
+      })
+    }else{
+      res.json({
+        "db":true,
+        "user":db
+      });
+    }
   });
 }

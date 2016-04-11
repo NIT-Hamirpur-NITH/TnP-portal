@@ -1,30 +1,39 @@
 <div class="col-md-10">
   <div ng-switch on="identity.role()">
-    <ul ng-switch-when="admin">
-      <li><a href="">Civil</a></li>
-      <li><a href="">EEE</a></li>
-      <li><a href="">MED</a></li>
-      <li><a href="">ECE</a></li>
-      <li><a href="">CSE</a></li>
-      <li><a href="">Architecture</a></li>
-      <li><a href="">Chemical</a></li>
-    </ul>
-    <table border="1" ng-repeat="data in database" class="table table-bordered table-hover table-striped" ng-switch-when="tpr">
-      <tr class="info">
-        <th>S.no</th>
-        <th>Username</th>
-        <th>Name</th>
-        <th>Branch</th>
-        <th>Invitation</th>
-      </tr>
-      <tr ng-repeat="user in data">
-        <td>{{user.sno}}</td>
-        <td>{{user.username}}</td>
-        <td>{{user.name}}</td>
-        <td>{{user.branch}}</td>
-        <td ng-hide="user.invite"><button type="button" class="btn btn-primary">Send Invite</button></td>
-        <td ng-show="user.invite"><button type="button" class="btn btn-success" disabled>Invitation Sent</button></td>
-      </tr>
-    </table>
+    <div ng-switch-when="admin">
+      <ul>
+        <li><a href="">Civil</a></li>
+        <li><a href="">EEE</a></li>
+        <li><a href="">MED</a></li>
+        <li><a href="">ECE</a></li>
+        <li><a href="">CSE</a></li>
+        <li><a href="">Architecture</a></li>
+        <li><a href="">Chemical</a></li>
+      </ul>
+    </div>
+    <div ng-switch-when="tpr">
+      <div ng-if="!db">
+        <h1 class="text-center">No database uploaded.</h1><br />
+      </div>
+      <div ng-if="db">
+        <table border="1" class="table table-bordered table-hover table-striped" ng-repeat="data in database">
+          <tr class="info">
+            <th>S.no</th>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Branch</th>
+            <th>Invitation</th>
+          </tr>
+          <tr ng-repeat="user in data">
+            <td>{{user.sno}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.branch}}</td>
+            <td ng-hide="user.invite"><button type="button" class="btn btn-primary">Send Invite</button></td>
+            <td ng-show="user.invite"><button type="button" class="btn btn-success" disabled>Invitation Sent</button></td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

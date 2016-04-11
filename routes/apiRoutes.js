@@ -38,6 +38,6 @@ router.get('*', function(req, res){
 *ADMIN ROUTES
 */
 router.post('/admin/addtpr', auth.isLoggedIn, roles.isAdmin, auth.signupAuthenticate);
-router.get('/admin/database/:branch', auth.isLoggedIn, roles.isAdmin, admin.getDatabase);
+router.get('/database/:branch', auth.isLoggedIn, roles.isAdmin, admin.getDatabase);
 
 module.exports = router;
