@@ -28,6 +28,11 @@ var routeCheck = {
     auth: function(authService){
       return authService.authorizeRole('tpr');
     }
+  },
+  adminTpr:{
+    auth:function(authService){
+      return authService.authAdminTpr();
+    }
   }
 }
 
@@ -59,7 +64,7 @@ app.config(function($routeProvider, $locationProvider){
     .when('/database',{
       templateUrl: 'partials/database.html',
       controller: 'databaseCtrl',
-      resolve: routeCheck.tpr
+      resolve: routeCheck.adminTpr
     })
     .otherwise({redirectTo: '/'})
 });

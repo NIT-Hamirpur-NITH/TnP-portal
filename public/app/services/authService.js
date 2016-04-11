@@ -26,7 +26,7 @@ app.factory('authService', function($http, $q, identityService, $cookies){
       var deferred = $q.defer();
       $http({
         method: 'POST',
-        url: '/api/addtpr',
+        url: '/api/admin/addtpr',
         data: newUser
       })
       .success(function(data){
@@ -77,6 +77,14 @@ app.factory('authService', function($http, $q, identityService, $cookies){
       }else{
         return $q.reject('noAuth');
       }
-    }
+    },
+
+    authAdminTpr: function(){
+      if(!(identityService.isAuthorized("user"))){
+        return true;
+      }else{
+        return $q.reject('noAuth');
+      }
+    },
   }
 });
