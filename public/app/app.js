@@ -26,7 +26,7 @@ var routeCheck = {
       return authService.authorizeRole('admin');
     },
     database: function(databaseService, $route){
-      return (databaseService.getDbByBranch($route.current.pathParams.branch)
+      return (databaseService.getDbByBranch($route.current.params.branch)
       .then (function(data){
         return data;
       },function(status){
@@ -38,12 +38,6 @@ var routeCheck = {
   tpr: {
     auth: function(authService){
       return authService.authorizeRole('tpr');
-    }
-  },
-
-  adminTpr:{
-    auth:function(authService){
-      return authService.authAdminTpr();
     },
     database: function(databaseService){
       return (databaseService.getDatabase()
@@ -52,6 +46,12 @@ var routeCheck = {
       },function(status){
         console.log(status);
       }))
+    }
+  },
+
+  adminTpr:{
+    auth:function(authService){
+      return authService.authAdminTpr();
     }
   }
 }
@@ -62,32 +62,32 @@ app.config(function($routeProvider, $locationProvider){
 
   $routeProvider
     .when('/', {
-      templateUrl: 'partials/login.html',
+      templateUrl: '/partials/login.html',
       controller: 'authCtrl',
       resolve: routeCheck.noUser
     })
     .when('/home', {
-      templateUrl: 'partials/home.html',
+      templateUrl: '/partials/home.html',
       controller: 'homeCtrl',
       resolve: routeCheck.user
     })
     .when('/addtpr',{
-      templateUrl: 'partials/addtpr.html',
+      templateUrl: '/partials/addtpr.html',
       controller: 'authCtrl',
       resolve: routeCheck.admin
     })
     .when('/invite',{
-      templateUrl: 'partials/invite.html',
+      templateUrl: '/partials/invite.html',
       controller: 'inviteCtrl',
       resolve: routeCheck.tpr
     })
     .when('/database',{
-      templateUrl: 'partials/database.html',
+      templateUrl: '/partials/database.html',
       controller: 'databaseCtrl',
-      resolve: routeCheck.adminTpr
+      resolve: routeCheck.tpr
     })
-    .when('/db/:branch',{
-      templateUrl: 'partials/database.html',
+    .when('/database/:branch',{
+      templateUrl: '/partials/database.html',
       controller: 'databaseCtrl',
       resolve: routeCheck.admin
     })
