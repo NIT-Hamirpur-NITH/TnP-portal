@@ -32,6 +32,7 @@ router.get('/company/canApply', auth.isLoggedIn, user.canApply);
 router.post('/invite', auth.isLoggedIn, roles.isTpr, tpr.inviteAll);
 router.get('/database', auth.isLoggedIn, roles.isTpr, tpr.getDatabase);
 router.post('/uploadDb', auth.isLoggedIn, roles.isTpr, tpr.uploadDatabase);
+router.get('/ifDb', auth.isLoggedIn, roles.isTpr, tpr.ifDb);
 /*
 *ADMIN ROUTES
 */

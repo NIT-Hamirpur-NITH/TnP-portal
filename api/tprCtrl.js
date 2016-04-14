@@ -4,6 +4,7 @@ var Company = require('../models/companies');
 var XLSX = require('xlsx');
 var formidable = require('formidable');
 var util = require('util');
+var fs = require('fs');
 
 var config = require('../server/config/config')['development'];
 
@@ -112,6 +113,35 @@ exports.getDatabase = function(req, res, next){
   });
 }
 
+exports.ifDb = function(req, res, next){
+  var db = false;
+  fs.readdir(config.rootPath + '/data/database/', function(err, files){
+    if(err)
+      throw err;
+    if(!files){
+      res.json({
+        "db":false
+      })
+    }else{
+      files.forEach(function(file){
+        var name = file.split('.')[0];
+        if(name == req.user.branch){
+          db = true;
+        }
+      })
+      if(db){
+        res.json({
+          "db":true
+        })
+      }else{
+        res.json({
+          "db":false
+        })
+      }
+    }
+  });
+}
+
 exports.uploadDatabase = function(req, res, next){
   var form = new formidable.IncomingForm();
   form.uploadDir = config.rootPath + "/data/database";
@@ -130,6 +160,7 @@ exports.uploadDatabase = function(req, res, next){
 
   form.parse(req, function(err, fields, files) {
     res.json({
+      "db":db,
       "uploadInfo":util.inspect({fields: fields, files: files})
     });
   });
