@@ -144,13 +144,13 @@ exports.ifDb = function(req, res, next){
 
 exports.uploadDatabase = function(req, res, next){
   var form = new formidable.IncomingForm();
-  form.uploadDir = config.rootPath + "/data/database";
+  form.uploadDir = config.rootPath + "data/database";
   form.type = "multipart";
   form.keepExtensions = true;
 
   form.on('fileBegin', function(name, file) {
     var ext = file.name.split('.')[1];
-    file.path = config.rootPath + '/data/database/' + req.user.branch + '.' + ext;
+    file.path = config.rootPath + 'data/database/' + req.user.branch + '.' + ext;
   });
 
   form.on('progress', function(bytesReceived, bytesExpected) {
@@ -160,7 +160,7 @@ exports.uploadDatabase = function(req, res, next){
 
   form.parse(req, function(err, fields, files) {
     res.json({
-      "db":db,
+      "db":true,
       "uploadInfo":util.inspect({fields: fields, files: files})
     });
   });
