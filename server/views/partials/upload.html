@@ -2,7 +2,7 @@
   <form class="form-horizontal" enctype="multipart/form-data">
     <div class="form-group">
       <div class="col-md-4 col-md-offset-4">
-        <h2>Upload Database</h2>
+        <h2>Upload File</h2>
       </div>
     </div>
     <div class="form-group">
@@ -18,8 +18,21 @@
       </div>
     </div>
   </form>
-  <div ng-show="ifDb.db" class="col-md-4 col-md-offset-4">
-    <h2>Database uploaded.</h2>
-    <p class="help-block">Proceed to <a href="/invite">invite.</a></p>
+
+  <div ng-switch="added.db">
+    <div ng-switch-when="true" class="col-md-5 col-md-offset-4">
+      <h2>Database stored and added.</h2>
+      <p class="help-block">Proceed to <a href="/invite">invite.</a></p>
+    </div>
+    <div ng-switch-when="null">
+      <div ng-show="ifDb.db" class="col-md-4 col-md-offset-4">
+        <h2>Database uploaded.</h2>
+        <p class="help-block">
+          <!-- <button class="btn btn-primary btn-success" ng-show="added.db" disabled>Added</button> -->
+          <button class="btn btn-primary" ng-click="adddb()" ng-hide="added.db">Add</button>
+          to Database.
+        </p>
+      </div>
+    </div>
   </div>
 </div>

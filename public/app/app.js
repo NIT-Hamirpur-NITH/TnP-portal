@@ -47,6 +47,14 @@ var routeCheck = {
         console.log(status);
       }))
     },
+    ifAddedToDb: function(databaseService){
+      return (databaseService.ifAddedToDb()
+        .then (function(data){
+          return data;
+        },function(status){
+          console.log(status);
+        }))
+      },
     database: function(databaseService){
       return (databaseService.getDatabase()
       .then (function(data){
@@ -54,7 +62,7 @@ var routeCheck = {
       },function(status){
         console.log(status);
       }))
-    }
+    },
   },
 
   adminTpr:{
@@ -84,18 +92,19 @@ app.config(function($routeProvider, $locationProvider){
       controller: 'authCtrl',
       resolve: routeCheck.admin
     })
-    .when('/invite',{
-      templateUrl: '/partials/invite.html',
-      controller: 'inviteCtrl',
-      resolve: routeCheck.tpr
-    })
     .when('/upload',{
       templateUrl: '/partials/upload.html',
       controller: 'uploadCtrl',
       resolve: {
         "auth":routeCheck.tpr.auth,
-        "ifDb":routeCheck.tpr.ifDb
+        "ifDb":routeCheck.tpr.ifDb,
+        "added":routeCheck.tpr.ifAddedToDb
       }
+    })
+    .when('/invite',{
+      templateUrl: '/partials/invite.html',
+      controller: 'inviteCtrl',
+      resolve: routeCheck.tpr
     })
     .when('/database',{
       templateUrl: '/partials/database.html',

@@ -43,6 +43,36 @@ app.factory('databaseService', function($http, $q){
         deferred.reject(status);
       });
       return deferred.promise;
+    },
+
+    ifAddedToDb : function(){
+      var deferred = $q.defer();
+      $http({
+        method: 'POST',
+        url: '/api/ifAddedToDb'
+      })
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(status){
+        deferred.reject(status);
+      });
+      return deferred.promise;
+    },
+
+    adddb : function(){
+      var deferred = $q.defer();
+      $http({
+        method: 'POST',
+        url: '/api/addDb'
+      })
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(status){
+        deferred.reject(status);
+      });
+      return deferred.promise;
     }
   }
 });

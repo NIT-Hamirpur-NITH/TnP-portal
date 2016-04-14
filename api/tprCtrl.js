@@ -6,8 +6,6 @@ var formidable = require('formidable');
 var util = require('util');
 var fs = require('fs');
 
-var config = require('../server/config/config')['development'];
-
 exports.addCompany =  function(req, res, next){
     var input = req.body;
     var company = new Company();
@@ -58,44 +56,6 @@ exports.editCompany =  function(req, res, next){
       });
 }
 
-exports.inviteAll = function(req, res, next){
-  //Invite all from database and send mail to everyone.
-  /*
-  var workbook = XLSX.readFile('data/database/database.xlsx');
-  var sheet = workbook.SheetNames[0];
-  var worksheet = workbook.Sheets[sheet];
-
-  var json = XLSX.utils.sheet_to_json(worksheet);
-  for(i = 0; i < json.length; i++){
-    var obj = json[i];
-    var newUser = new User(obj);
-    newUser.roles = ["user"];
-    newUser.password = "root";
-    newUser.save(function (err) {
-      if (err) {
-          throw err;
-      }
-    });
-  }
-  */
-  User.find({branch:req.user.branch}).exec(function(err, user){
-    if(err)
-      throw err;
-    for(i=0; i<user.length;i++){
-      var obj = user[i];
-      obj.invite = true;
-      obj.save(function(err){
-        if(err)
-          throw err;
-      });
-    }
-    res.json({
-      "message":"Invitation sent to all.",
-      "user":user
-    });
-  })
-}
-
 exports.getDatabase = function(req, res, next){
   User.find({branch:req.user.branch}).sort({sno:1}).exec(function(err,db){
     if(err)
@@ -115,7 +75,7 @@ exports.getDatabase = function(req, res, next){
 
 exports.ifDb = function(req, res, next){
   var db = false;
-  fs.readdir(config.rootPath + '/data/database/', function(err, files){
+  fs.readdir('data/database/', function(err, files){
     if(err)
       throw err;
     if(!files){
@@ -144,13 +104,13 @@ exports.ifDb = function(req, res, next){
 
 exports.uploadDatabase = function(req, res, next){
   var form = new formidable.IncomingForm();
-  form.uploadDir = config.rootPath + "data/database";
+  form.uploadDir = "data/database";
   form.type = "multipart";
   form.keepExtensions = true;
 
   form.on('fileBegin', function(name, file) {
     var ext = file.name.split('.')[1];
-    file.path = config.rootPath + 'data/database/' + req.user.branch + '.' + ext;
+    file.path = 'data/database/' + req.user.branch + '.' + ext;
   });
 
   form.on('progress', function(bytesReceived, bytesExpected) {
@@ -168,4 +128,45 @@ exports.uploadDatabase = function(req, res, next){
   form.on('error', function(err) {
     console.error(err);
   });
+}
+
+exports.addDatabase = function(req, res, next){
+  var workbook = XLSX.readFile('data/database/' + req.user.branch + '.xlsx');
+  var sheet = workbook.SheetNames[0];
+  var worksheet = workbook.Sheets[sheet];
+
+  var json = XLSX.utils.sheet_to_json(worksheet);
+  for(i = 0; i < json.length; i++){
+    var obj = json[i];
+    var newUser = new User(obj);
+    newUser.roles = ["user"];
+    newUser.password = "root";
+    newUser.save(function (err) {
+      if (err) {
+          throw err;
+      }
+    });
+  }
+  res.json({
+    "db":true
+  })
+}
+
+exports.inviteAll = function(req, res, next){
+  User.find({branch:req.user.branch}).exec(function(err, user){
+    if(err)
+      throw err;
+    for(i=0; i<user.length;i++){
+      var obj = user[i];
+      obj.invite = true;
+      obj.save(function(err){
+        if(err)
+          throw err;
+      });
+    }
+    res.json({
+      "message":"Invitation sent to all.",
+      "user":user
+    });
+  })
 }
