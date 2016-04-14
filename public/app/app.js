@@ -81,6 +81,11 @@ app.config(function($routeProvider, $locationProvider){
       controller: 'inviteCtrl',
       resolve: routeCheck.tpr
     })
+    .when('/upload',{
+      templateUrl: '/partials/upload.html',
+      controller: 'uploadCtrl',
+      resolve: routeCheck.tpr
+    })
     .when('/database',{
       templateUrl: '/partials/database.html',
       controller: 'databaseCtrl',
