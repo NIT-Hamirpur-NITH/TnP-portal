@@ -2,8 +2,10 @@ var passport = require('passport');
 var User = require('../models/users');
 var Company = require('../models/companies');
 var XLSX = require('xlsx');
-var workbook = XLSX.readFile('data/database/database.xlsx');
+var formidable = require('formidable');
+var util = require('util');
 
+var config = require('../server/config/config')['development'];
 
 exports.addCompany =  function(req, res, next){
     var input = req.body;
@@ -58,6 +60,7 @@ exports.editCompany =  function(req, res, next){
 exports.inviteAll = function(req, res, next){
   //Invite all from database and send mail to everyone.
   /*
+  var workbook = XLSX.readFile('data/database/database.xlsx');
   var sheet = workbook.SheetNames[0];
   var worksheet = workbook.Sheets[sheet];
 
@@ -106,5 +109,32 @@ exports.getDatabase = function(req, res, next){
         "user":db
       });
     }
+  });
+}
+
+exports.uploadDatabase = function(req, res, next){
+  var form = new formidable.IncomingForm();
+  form.uploadDir = config.rootPath + "/data/database";
+  form.type = "multipart";
+  form.keepExtensions = true;
+
+  form.on('fileBegin', function(name, file) {
+    var ext = file.name.split('.')[1];
+    file.path = config.rootPath + '/data/database/' + req.user.branch + '.' + ext;
+  });
+
+  form.on('progress', function(bytesReceived, bytesExpected) {
+        var percent_complete = (bytesReceived / bytesExpected) * 100;
+        console.log(percent_complete);
+  });
+
+  form.parse(req, function(err, fields, files) {
+    res.json({
+      "uploadInfo":util.inspect({fields: fields, files: files})
+    });
+  });
+
+  form.on('error', function(err) {
+    console.error(err);
   });
 }
