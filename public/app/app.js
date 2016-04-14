@@ -39,6 +39,14 @@ var routeCheck = {
     auth: function(authService){
       return authService.authorizeRole('tpr');
     },
+    ifDb: function(databaseService){
+      return (databaseService.ifDb()
+      .then (function(data){
+        return data;
+      },function(status){
+        console.log(status);
+      }))
+    },
     database: function(databaseService){
       return (databaseService.getDatabase()
       .then (function(data){
@@ -84,7 +92,10 @@ app.config(function($routeProvider, $locationProvider){
     .when('/upload',{
       templateUrl: '/partials/upload.html',
       controller: 'uploadCtrl',
-      resolve: routeCheck.tpr
+      resolve: {
+        "auth":routeCheck.tpr.auth,
+        "ifDb":routeCheck.tpr.ifDb
+      }
     })
     .when('/database',{
       templateUrl: '/partials/database.html',

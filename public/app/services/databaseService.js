@@ -19,7 +19,22 @@ app.factory('databaseService', function($http, $q){
       var deferred = $q.defer();
       $http({
         method: 'GET',
-        url: '/api/database/'+branch
+        url: '/api/database/' + branch
+      })
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(status){
+        deferred.reject(status);
+      });
+      return deferred.promise;
+    },
+
+    ifDb : function(){
+      var deferred = $q.defer();
+      $http({
+        method: 'GET',
+        url: '/api/ifDb'
       })
       .success(function(data){
         deferred.resolve(data);
