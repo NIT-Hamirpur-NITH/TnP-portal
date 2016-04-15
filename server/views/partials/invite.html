@@ -1,3 +1,24 @@
 <div class="col-md-10">
-<button type="button" class="btn btn-primary" ng-click="inviteAll()"><span style="font-family:Lato; font-size:16px"> Invite All</span></button>
+  <center>
+  <!-- <div class="col-md-8 col-md-offset-3"> -->
+  <div ng-switch="inviteSent.user">
+    <div ng-switch-when="null">
+      <h2>Complete the upload step.</h2>
+      <p class="help-block">Go to <a href="/upload">upload.</a></p>
+    </div>
+    <div ng-switch-when="true">
+      <h2>Send invite to all the students at once.</h2>
+      <p class="help-block">You can also send invites individually to all the students <a href="/database">here</a></p>
+      <div ng-switch="inviteSent.inviteSent">
+        <div ng-switch-when="false">
+          <button type="button" class="btn btn-primary" ng-click="inviteAll()"><span style="font-family:Lato; font-size:16px"> Invite All</span></button>
+        </div>
+        <div ng-switch-when="true">
+          <button type="button" class="btn btn-primary btn-success"><span style="font-family:Lato; font-size:16px"> Invitation sent to all</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+  </center>
 </div>

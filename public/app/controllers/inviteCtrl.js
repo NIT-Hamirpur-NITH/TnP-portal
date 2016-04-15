@@ -1,9 +1,11 @@
-app.controller('inviteCtrl', function($scope, $location, inviteService){
+app.controller('inviteCtrl', function($scope, $location, $route, inviteService){
+
+  $scope.inviteSent = $route.current.locals.inviteSent;
 
   $scope.inviteAll = function(){
     inviteService.inviteAll().
     then (function(data){
-      // $scope.database = data.user;
+      $scope.inviteSent = data;
     },function(status){
       console.log(status);
     });

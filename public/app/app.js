@@ -63,6 +63,14 @@ var routeCheck = {
         console.log(status);
       }))
     },
+    inviteSent: function(databaseService){
+      return (databaseService.inviteSent()
+      .then (function(data){
+        return data;
+      },function(status){
+        console.log(status);
+      }))
+    }
   },
 
   adminTpr:{
@@ -104,7 +112,10 @@ app.config(function($routeProvider, $locationProvider){
     .when('/invite',{
       templateUrl: '/partials/invite.html',
       controller: 'inviteCtrl',
-      resolve: routeCheck.tpr
+      resolve: {
+        "auth": routeCheck.tpr.auth,
+        "inviteSent": routeCheck.tpr.inviteSent
+      }
     })
     .when('/database',{
       templateUrl: '/partials/database.html',
