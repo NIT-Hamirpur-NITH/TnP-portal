@@ -165,8 +165,43 @@ exports.inviteAll = function(req, res, next){
       });
     }
     res.json({
-      "message":"Invitation sent to all.",
-      "user":user
+      "inviteSent":true,
+      "message":"Invitation sent to all."
     });
+  })
+}
+
+exports.inviteSent = function(req, res, next){
+  User.find({branch:req.user.branch, invite:false}).exec(function(err, user){
+    if(err)
+      throw err;
+    if(!user.length){
+      res.json({
+        "inviteSent":true,
+        "user":true,
+        "message":"Invitation sent to all."
+      })
+    }else{
+      res.json({
+        "inviteSent":false,
+        "user":true,
+        "message":"Invitation not sent to all."
+      });
+    }
+  })
+}
+
+exports.ifBranch = function(req, res, next){
+  User.find({branch:req.user.branch}).exec(function(err, user){
+    if(err)
+      throw err;
+    if(!user.length){
+      res.json({
+        "inviteSent":false,
+        "user":null
+      })
+    }else{
+      next();
+    }
   })
 }

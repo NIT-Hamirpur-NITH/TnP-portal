@@ -29,7 +29,8 @@ router.get('/company/canApply', auth.isLoggedIn, user.canApply);
 /*
 *TPR ROUTES
 */
-router.post('/invite', auth.isLoggedIn, roles.isTpr, tpr.inviteAll);
+router.post('/invite', auth.isLoggedIn, roles.isTpr, tpr.ifBranch, tpr.inviteAll);
+router.get('/inviteSent', auth.isLoggedIn, roles.isTpr, tpr.ifBranch, tpr.inviteSent);
 router.get('/database', auth.isLoggedIn, roles.isTpr, tpr.getDatabase);
 router.get('/ifDb', auth.isLoggedIn, roles.isTpr, tpr.ifDb);
 router.post('/uploadDb', auth.isLoggedIn, roles.isTpr, tpr.uploadDatabase);
