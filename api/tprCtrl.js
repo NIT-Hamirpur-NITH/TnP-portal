@@ -166,6 +166,7 @@ exports.inviteAll = function(req, res, next){
     }
     res.json({
       "inviteSent":true,
+      "user":true,
       "message":"Invitation sent to all."
     });
   })
