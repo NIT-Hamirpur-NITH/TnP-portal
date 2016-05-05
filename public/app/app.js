@@ -63,8 +63,8 @@ var routeCheck = {
         console.log(status);
       }))
     },
-    inviteSent: function(databaseService){
-      return (databaseService.inviteSent()
+    inviteSent: function(inviteService){
+      return (inviteService.inviteSent()
       .then (function(data){
         return data;
       },function(status){
