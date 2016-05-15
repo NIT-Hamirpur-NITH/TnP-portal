@@ -1,6 +1,7 @@
 var passport = require('passport');
 var User = require('../models/users');
 var Company = require('../models/companies');
+var Tpr = require('../models/tpr');
 var XLSX = require('xlsx');
 var formidable = require('formidable');
 var util = require('util');
@@ -19,6 +20,7 @@ exports.addCompany =  function(req, res, next){
     company.eligibility.tenth=input.tenth;
     company.eligibility.twelfth=input.twelfth;
     company.eligibility.btech=input.btech;
+    company.tpr=req.user._id;
     company.save();
     res.json({
       "message":company

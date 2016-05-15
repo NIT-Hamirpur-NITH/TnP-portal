@@ -58,23 +58,6 @@ exports.placedIn = function(req, res, next){
   });
 }
 
-exports.listAll = function(req, res, next){
-  Companies.find().exec(function(err, companies){
-    if(err)
-      throw err;
-    if(!companies){
-      res.json({
-        "message":"No company visited",
-        "company":undefined
-      });
-    }else{
-      res.json({
-        "visited companies":companies
-      });
-    }
-  });
-}
-
 exports.canApply = function(req, res, next){
 	var canApplyto = function(callback){
 		Companies.find({deadline: {$gte: Date.now()}}).exec(function(err, companies){
