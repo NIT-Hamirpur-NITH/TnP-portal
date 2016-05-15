@@ -6,6 +6,7 @@ app.controller('tprCtrl', function($scope, $window, $route, $location, tprServic
       name : $scope.name,
       branch : $scope.branch,
       email : $scope.email,
+      contact : $scope.contact,
       password : $scope.password
     }
 

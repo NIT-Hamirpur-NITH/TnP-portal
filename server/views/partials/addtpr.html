@@ -33,11 +33,11 @@
         </div>
     </div>
     <div class="form-group">
-      <label for="branch" class="col-md-1 col-md-offset-3 control-label">Branch</label>
+      <label for="contact" class="col-md-1 col-md-offset-3 control-label">Contact</label>
         <div class="col-md-4">
           <div class="input-group">
-            <div class="input-group-addon"><span class="glyphicon glyphicon-th-list"></span></div>
-            <input type="text" class="form-control" placeholder="Enter your Branch" ng-model="branch">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></div>
+            <input type="text" class="form-control" placeholder="Enter your contact number" ng-model="contact">
           </div>
         </div>
     </div>
@@ -51,9 +51,30 @@
         </div>
     </div>
     <div class="form-group">
+      <label for="branch" class="col-md-1 col-md-offset-3 control-label">Branch</label>
+        <div class="col-md-4">
+          <div class="form-group">
+            <div class="col-md-12">
+              <select class="selectpicker show-menu-arrow form-control" title="Select branch..." ng-model="branch">
+                <option>Civil</option>
+                <option>EEE</option>
+                <option>ME</option>
+                <option>ECE</option>
+                <option>CSE</option>
+                <option>Architecture</option>
+                <option>Chemical</option>
+              </select>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="form-group">
       <div class="col-md-4 col-md-offset-4">
         <button type="button" class="btn btn-primary glyphicon glyphicon-align-justify" ng-click="addtpr()"><span style="font-family:Lato; font-size:16px"> Add</span></button>
       </div>
     </div>
   </form>
 </div>
+<script>
+  $('.selectpicker').selectpicker();
+</script>

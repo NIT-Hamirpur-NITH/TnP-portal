@@ -1,3 +1,23 @@
 <div class="col-md-10">
-  {{tpr}}
+  <div ng-if="!tpr.tpr">
+    <h1 class="text-center">No TPR added.</h1><br />
+  </div>
+  <div ng-if="tpr.tpr">
+    <table border="1" class="table table-bordered table-hover table-striped">
+      <tr class="info">
+        <!-- <th>S.no</th> -->
+        <th>Name</th>
+        <th>Branch</th>
+        <th>Email</th>
+        <th>Contact no.</th>
+      </tr>
+      <tr ng-repeat="data in tpr.tpr | orderBy:'name'">
+        <!-- <td>{{sno = sno + 1}}</td> -->
+        <td>{{data.name}}</td>
+        <td>{{data.branch}}</td>
+        <td>{{data.email}}</td>
+        <td>{{data.contact}}</td>
+      </tr>
+    </table>
+  </div>
 </div>
