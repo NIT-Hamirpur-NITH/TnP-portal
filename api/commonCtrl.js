@@ -57,7 +57,7 @@ exports.companies = function(req, res, next){
   Company.find().exec(function(err, companies){
     if(err)
       throw err;
-    if(!companies){
+    if(!companies.length){
       res.json({
         "message":"No company visited",
         "companies":null

@@ -1,4 +1,23 @@
 <div class="col-md-10">
-  {{companies}}
+  <div ng-if="!companies.companies">
+    <h1 class="text-center">No company visited yet.</h1><br />
+  </div>
+  <div ng-if="companies.companies">
+    <div ng-repeat="company in companies.companies | orderBy:'company.deadline':true">
+      <div class="jumbotron">
+        <h3>{{$index + 1}}. {{company.name | uppercase}}</h3>
+        Package : {{company.package}} lpa<br />
+        Date of visiting : {{company.date | date:'dd-MM-yyyy'}}<br />
+        Branches : <span ng-repeat="branch in company.branches">{{branch}}  </span><br />
+        Application submission deadline : {{company.deadline | date:'dd-MM-yyyy'}}<br />
+        10th % : {{company.eligibility.tenth}}<br />
+        12th % : {{company.eligibility.twelfth}}<br />
+        B.Tech : {{company.eligibility.btech}}<br />
+        Description : {{company.description}}<br />
+        Process : {{company.process}}<br />
+        <!-- <a class="btn btn-primary" href="#" role="button">Learn more</a> -->
+      </div>
+    </div>
+  </div>
   <!-- Should have a posted by note -->
 </div>

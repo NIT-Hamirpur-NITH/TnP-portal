@@ -1,3 +1,23 @@
 <div class="col-md-10">
-  {{posted}}
+  <div ng-if="!posted.companies">
+    <h1 class="text-center">No company posted yet.</h1><br />
+  </div>
+  <div ng-if="posted.companies">
+    <div ng-repeat="company in posted.companies">
+      <div class="jumbotron">
+        <h3>{{$index + 1}}. {{company.name | uppercase}}</h3>
+        Package : {{company.package}}<br />
+        Date of visiting : {{company.date}}<br />
+        Branches : <span ng-repeat="branch in company.branches">{{branch}}</span><br />
+        Application submission deadline : {{company.deadline}}<br />
+        10th % : {{company.eligibility.tenth}}<br />
+        12th % : {{company.eligibility.twelfth}}<br />
+        B.Tech : {{company.eligibility.btech}}<br />
+        Description : {{company.description}}<br />
+        Process : {{company.process}}<br />
+        <!-- <a class="btn btn-primary" href="#" role="button">Learn more</a> -->
+      </div>
+    </div>
+  </div>
+  <!-- Should have a posted by note -->
 </div>
