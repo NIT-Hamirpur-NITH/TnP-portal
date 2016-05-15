@@ -1,0 +1,142 @@
+<div class="col-md-10">
+  <form class="form-horizontal">
+    <div class="form-group">
+      <div class="col-md-4 col-md-offset-4">
+        <h2>Add new Company</h2>
+      </div>
+    </div>
+    <div class="row">
+      <label for="cname" class="col-md-1 control-label">Name</label>
+      <div class="col-md-5">
+        <div class="form-group">
+          <div class="col-md-12">
+            <div class="input-group">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-tags"></span></div>
+              <input type="text" class="form-control" placeholder="Enter Company name" ng-model="cname">
+            </div>
+          </div>
+        </div>
+      </div>
+      <label for="cpackage" class="col-md-1 control-label">Package</label>
+      <div class="col-md-5">
+        <div class="form-group">
+          <div class="col-md-12">
+            <div class="input-group">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-euro glyphicon"></span></div>
+              <input type="text" class="form-control" placeholder="Enter Package" ng-model="cpackage">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <label for="cdeadline" class="col-md-1 control-label">Deadline</label>
+      <div class="col-md-5">
+        <div class="form-group">
+          <div class="col-md-12">
+            <div class="input-group">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
+              <input type="text" class="form-control" placeholder="Enter Application submission Deadline" ng-model="cdeadline">
+            </div>
+          </div>
+        </div>
+      </div>
+      <label for="cbranches" class="col-md-1 control-label">Branches</label>
+        <div class="col-md-5">
+          <div class="form-group">
+            <div class="col-md-12">
+              <select class="selectpicker show-menu-arrow form-control" multiple title="Select branch..." ng-model="cbranch">
+                <option>Civil</option>
+                <option>EEE</option>
+                <option>ME</option>
+                <option>ECE</option>
+                <option>CSE</option>
+                <option>Architecture</option>
+                <option>Chemical</option>
+              </select>
+          </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <label for="cdate" class="col-md-1 control-label">Date</label>
+      <div class="col-md-5">
+        <div class="form-group">
+          <div class="col-md-12">
+            <div class="input-group">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
+              <input type="text" class="form-control" placeholder="Enter visiting date" ng-model="cdate">
+            </div>
+          </div>
+        </div>
+      </div>
+      <label for="cbtech" class="col-md-1 control-label">B.Tech</label>
+      <div class="col-md-5">
+        <div class="form-group">
+          <div class="col-md-12">
+            <div class="input-group">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-book"></span></div>
+              <input type="text" class="form-control" placeholder="Enter B.tech percentage" ng-model="btech">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <label for="ctenth" class="col-md-1 control-label">10th %</label>
+      <div class="col-md-5">
+        <div class="form-group">
+          <div class="col-md-12">
+            <div class="input-group">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-book"></span></div>
+              <input type="text" class="form-control" placeholder="Enter 10th percentage" ng-model="tenth">
+            </div>
+          </div>
+        </div>
+      </div>
+      <label for="ctwelfth" class="col-md-1 control-label">12th %</label>
+      <div class="col-md-5">
+        <div class="form-group">
+          <div class="col-md-12">
+            <div class="input-group">
+              <div class="input-group-addon"><span class="glyphicon glyphicon-book"></span></div>
+              <input type="text" class="form-control" placeholder="Enter 12th percentage" ng-model="twelfth">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <label for="cdescription" class="col-md-1 control-label">Description</label>
+      <div class="col-md-5">
+        <div class="form-group">
+          <div class="col-md-12">
+              <!-- <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div> -->
+              <textarea class="form-control" rows="5" placeholder="Enter Description" ng-model="cdescription"></textarea>
+          </div>
+        </div>
+      </div>
+      <label for="cprocess" class="col-md-1 control-label">Process</label>
+      <div class="col-md-5">
+        <div class="form-group">
+          <div class="col-md-12">
+              <!-- <div class="input-group-addon"><span class="glyphicon glyphicon-eye-close"></span></div> -->
+              <textarea class="form-control" rows="5" placeholder="Enter company process" ng-model="cprocess"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-1 col-md-offset-1">
+        <button type="button" class="btn btn-primary glyphicon glyphicon-align-justify" ng-click="addCompany()"><span style="font-family:Lato; font-size:16px"> Add</span></button>
+      </div>
+    </div>
+  </form>
+</div>
+<script>
+  $('.selectpicker').selectpicker();
+</script>
