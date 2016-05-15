@@ -92,6 +92,14 @@ var routeCheck = {
       },function(status){
         console.log(status);
       }))
+    },
+    tpr: function(tprService){
+      return (tprService.listTpr()
+      .then (function(data){
+        return data;
+      },function(status){
+        console.log(status);
+      }))
     }
   }
 }
@@ -113,8 +121,18 @@ app.config(function($routeProvider, $locationProvider){
     })
     .when('/addtpr',{
       templateUrl: '/partials/addtpr.html',
-      controller: 'authCtrl',
-      resolve: routeCheck.admin
+      controller: 'tprCtrl',
+      resolve: {
+        "auth": routeCheck.admin.auth
+      }
+    })
+    .when('/tpr',{
+      templateUrl: '/partials/tpr.html',
+      controller: 'tprCtrl',
+      resolve:  {
+        "auth": routeCheck.adminTpr.auth,
+        "tpr": routeCheck.adminTpr.tpr
+      }
     })
     .when('/upload',{
       templateUrl: '/partials/upload.html',

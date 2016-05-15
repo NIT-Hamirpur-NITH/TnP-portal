@@ -1,5 +1,6 @@
 var User = require('../models/users');
 var Company = require('../models/companies');
+var Tpr = require('../models/tpr');
 
 exports.addCompany =  function(req, res, next){
     var input = req.body;
@@ -81,6 +82,23 @@ exports.posted =  function(req, res, next){
     }else{
       res.json({
         "companies":companies
+      });
+    }
+  });
+}
+
+exports.listTpr =  function(req, res, next){
+  Tpr.find().exec(function(err, tpr){
+    if(err)
+      throw err;
+    if(!tpr.length){
+      res.json({
+        "message":"No Tpr added.",
+        "tpr":null
+      });
+    }else{
+      res.json({
+        "tpr":tpr
       });
     }
   });

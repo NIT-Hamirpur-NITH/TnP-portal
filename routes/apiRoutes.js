@@ -43,6 +43,10 @@ router.post('/ifAddedToDb', auth.isLoggedIn, roles.isTpr, tpr.getDatabase);
 */
 router.post('/admin/addtpr', auth.isLoggedIn, roles.isAdmin, auth.signupAuthenticate);
 router.get('/database/:branch', auth.isLoggedIn, roles.isAdmin, admin.getDatabase);
+/*
+*COMMON ROUTES
+*/
+router.get('/tpr/all', auth.isLoggedIn, roles.isAuthorized, common.listTpr);
 
 router.get('*', function(req, res){
   res.redirect('/');
