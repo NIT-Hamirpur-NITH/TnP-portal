@@ -18,6 +18,14 @@ var routeCheck = {
   user: {
     auth: function(authService){
       return authService.authorize();
+    },
+    companies: function(companyService){
+      return (companyService.companies()
+      .then (function(data){
+        return data;
+      },function(status){
+        console.log(status);
+      }))
     }
   },
 
@@ -65,14 +73,6 @@ var routeCheck = {
     },
     inviteSent: function(inviteService){
       return (inviteService.inviteSent()
-      .then (function(data){
-        return data;
-      },function(status){
-        console.log(status);
-      }))
-    },
-    companies: function(companyService){
-      return (companyService.companies()
       .then (function(data){
         return data;
       },function(status){
@@ -146,8 +146,8 @@ app.config(function($routeProvider, $locationProvider){
       templateUrl: '/partials/companies.html',
       controller: 'companyCtrl',
       resolve: {
-        "auth": routeCheck.tpr.auth,
-        "companies": routeCheck.tpr.companies
+        "auth": routeCheck.user.auth,
+        "companies": routeCheck.user.companies
       }
     })
     .otherwise({redirectTo: '/'})
