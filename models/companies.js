@@ -3,7 +3,7 @@ var schema = mongoose.Schema;
 
 var companiesSchema = new schema({
 	name: {type: String,required:true},
-	date: {type: Date,default: Date.now()},
+	date: {type: Date},
 	description: {type: String},
 	package: {type: String,required:true},
 	branches: [String],

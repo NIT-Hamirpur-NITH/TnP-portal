@@ -127,5 +127,10 @@ app.config(function($routeProvider, $locationProvider){
       controller: 'databaseCtrl',
       resolve: routeCheck.admin
     })
+    .when('/add/company',{
+      templateUrl: '/partials/addCompany.html',
+      controller: 'companyCtrl',
+      resolve: routeCheck.tpr
+    })
     .otherwise({redirectTo: '/'})
 });
