@@ -84,6 +84,14 @@ var routeCheck = {
   adminTpr:{
     auth:function(authService){
       return authService.authAdminTpr();
+    },
+    posted: function(companyService){
+      return (companyService.posted()
+      .then (function(data){
+        return data;
+      },function(status){
+        console.log(status);
+      }))
     }
   }
 }
@@ -139,7 +147,7 @@ app.config(function($routeProvider, $locationProvider){
       templateUrl: '/partials/addCompany.html',
       controller: 'companyCtrl',
       resolve: {
-        "auth": routeCheck.tpr.auth
+        "auth": routeCheck.adminTpr.auth
       }
     })
     .when('/company/visited',{
@@ -148,6 +156,14 @@ app.config(function($routeProvider, $locationProvider){
       resolve: {
         "auth": routeCheck.user.auth,
         "companies": routeCheck.user.companies
+      }
+    })
+    .when('/company/posted',{
+      templateUrl: '/partials/posted.html',
+      controller: 'companyCtrl',
+      resolve: {
+        "auth": routeCheck.adminTpr.auth,
+        "posted": routeCheck.adminTpr.posted
       }
     })
     .otherwise({redirectTo: '/'})

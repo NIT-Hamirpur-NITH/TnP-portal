@@ -1,6 +1,7 @@
 <div ng-controller="authCtrl" ng-show="identity.isAuthenticated()">
   <div class="sidenav">
     <div ng-switch="identity.role()">
+      <!-- ADMIN -->
       <ul ng-switch-when="admin" class="nav nav-pills nav-stacked active-link">
         <li class="active"><a href="/">Home</a></li>
         <li><a role="button" data-toggle="collapse" href="#submenu" aria-expanded="false" aria-controls="submenu">Database</a></li>
@@ -15,9 +16,12 @@
           </ul>
         <li><a href="/addtpr">Add TPR</a></li>
         <li><a href="/">List TPR</a></li>
+        <li><a href="/company/add">Post company</a></li>
         <li><a href="/company/visited">Companies Visited</a></li>
+        <li><a href="/company/posted">Companies Posted</a></li> <!-- Will have an edit option inside it and student response as to who all have applied-->
         <li><a href="">Placed Students</a></li> <!-- Show by branch and package and total students -->
       </ul>
+      <!-- TPR -->
       <ul ng-switch-when="tpr" class="nav nav-pills nav-stacked active-link">
         <li class="active"><a href="/">Home</a></li>
         <li><a href="/upload">Upload</a></li>
@@ -25,9 +29,10 @@
         <li><a href="/database">Database</a></li>
         <li><a href="/company/add">Post company</a></li>
         <li><a href="/company/visited">Companies Visited</a></li>
-        <li><a href="">Companies Posted</a></li> <!-- Will have an edit option inside it and student response as to who all have applied-->
+        <li><a href="/company/posted">Companies Posted</a></li> <!-- Will have an edit option inside it and student response as to who all have applied-->
         <li><a href="">Placed Students</a></li> <!-- Show by branch and package and total students -->
       </ul>
+      <!-- USER -->
       <ul ng-switch-when="user" class="nav nav-pills nav-stacked active-link">
         <li class="active"><a href="/">Home</a></li>
         <li><a href="/">Applied for</a></li>

@@ -23,9 +23,10 @@ router.get('/placedIn', auth.isLoggedIn, user.placedIn);
 *ROUTES RELATED TO COMPANY
 */
 router.get('/company/visited', auth.isLoggedIn, common.companies);
-router.post('/company/add', auth.isLoggedIn, roles.isAuthorized, tpr.addCompany);
-router.post('/company/edit', auth.isLoggedIn, roles.isAuthorized, tpr.editCompany);
-router.get('/company/canApply', auth.isLoggedIn, user.canApply);
+router.get('/company/posted', auth.isLoggedIn, roles.isAuthorized, common.posted);
+router.post('/company/add', auth.isLoggedIn, roles.isAuthorized, common.addCompany);
+router.post('/company/edit', auth.isLoggedIn, roles.isAuthorized, common.editCompany);
+router.get('/company/canApply', auth.isLoggedIn, roles.isUser, user.canApply);
 
 /*
 *TPR ROUTES

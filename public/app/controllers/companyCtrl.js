@@ -22,7 +22,7 @@ app.controller('companyCtrl', function($scope, $window, $route, $location, compa
     });
   }
 
-  // $scope.companies = $route.current.locals.companies;
   $scope.companies = $route.current.locals.companies;
+  $scope.posted = $route.current.locals.posted;
 
 });

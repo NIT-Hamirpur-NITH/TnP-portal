@@ -7,7 +7,6 @@ var tprSchema = new schema ({
 	name: {type: String, required: true},
 	email: {type: String, required: true},
 	branch: {type: String, required:true},
-	companies: [String],
 	roles: [String]
 });
 
