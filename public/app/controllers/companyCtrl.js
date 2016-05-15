@@ -1,4 +1,4 @@
-app.controller('companyCtrl', function($scope, $window, $location, companyService){
+app.controller('companyCtrl', function($scope, $window, $route, $location, companyService){
 
   $scope.addCompany = function(){
     var newCompany = {
@@ -22,5 +22,7 @@ app.controller('companyCtrl', function($scope, $window, $location, companyServic
     });
   }
 
+  // $scope.companies = $route.current.locals.companies;
+  $scope.companies = $route.current.locals.companies;
 
 });

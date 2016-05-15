@@ -13,7 +13,8 @@ var companiesSchema = new schema({
 		btech: {type: String}
 	},
 	process: {type:String},
-	deadline: {type: Date}
+	deadline: {type: Date},
+	tpr:{type: String}
 });
 
 var companiesModel = mongoose.model('companies',companiesSchema);

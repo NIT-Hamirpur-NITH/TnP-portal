@@ -10,7 +10,7 @@ app.run(function ($rootScope, $location) {
 
 var routeCheck = {
   noUser: {
-    auth: function($q, authService){
+    auth: function(authService){
       return authService.noAuthorize();
     }
   },
@@ -65,6 +65,14 @@ var routeCheck = {
     },
     inviteSent: function(inviteService){
       return (inviteService.inviteSent()
+      .then (function(data){
+        return data;
+      },function(status){
+        console.log(status);
+      }))
+    },
+    companies: function(companyService){
+      return (companyService.companies()
       .then (function(data){
         return data;
       },function(status){
@@ -127,10 +135,20 @@ app.config(function($routeProvider, $locationProvider){
       controller: 'databaseCtrl',
       resolve: routeCheck.admin
     })
-    .when('/add/company',{
+    .when('/company/add',{
       templateUrl: '/partials/addCompany.html',
       controller: 'companyCtrl',
-      resolve: routeCheck.tpr
+      resolve: {
+        "auth": routeCheck.tpr.auth
+      }
+    })
+    .when('/company/visited',{
+      templateUrl: '/partials/companies.html',
+      controller: 'companyCtrl',
+      resolve: {
+        "auth": routeCheck.tpr.auth,
+        "companies": routeCheck.tpr.companies
+      }
     })
     .otherwise({redirectTo: '/'})
 });

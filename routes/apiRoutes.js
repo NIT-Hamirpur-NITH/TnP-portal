@@ -4,6 +4,7 @@ var auth = require('../api/auth/auth');
 var user = require('../api/userCtrl');
 var tpr = require('../api/tprCtrl');
 var admin = require('../api/adminCtrl');
+var common = require('../api/commonCtrl');
 var roles = require('../api/auth/roles');
 
 /*
@@ -21,9 +22,9 @@ router.get('/placedIn', auth.isLoggedIn, user.placedIn);
 /*
 *ROUTES RELATED TO COMPANY
 */
+router.get('/company/visited', auth.isLoggedIn, common.companies);
 router.post('/company/add', auth.isLoggedIn, roles.isAuthorized, tpr.addCompany);
 router.post('/company/edit', auth.isLoggedIn, roles.isAuthorized, tpr.editCompany);
-router.get('/company/all', auth.isLoggedIn, user.listAll);
 router.get('/company/canApply', auth.isLoggedIn, user.canApply);
 
 /*
