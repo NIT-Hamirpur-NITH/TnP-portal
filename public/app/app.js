@@ -26,6 +26,14 @@ var routeCheck = {
       },function(status){
         console.log(status);
       }))
+    },
+    canApply: function(companyService){
+      return (companyService.canApply()
+      .then (function(data){
+        return data;
+      },function(status){
+        console.log(status);
+      }))
     }
   },
 
@@ -182,6 +190,14 @@ app.config(function($routeProvider, $locationProvider){
       resolve: {
         "auth": routeCheck.adminTpr.auth,
         "posted": routeCheck.adminTpr.posted
+      }
+    })
+    .when('/company/canapply',{
+      templateUrl: '/partials/canapply.html',
+      controller: 'companyCtrl',
+      resolve: {
+        "auth": routeCheck.user.auth,
+        "canApply": routeCheck.user.canApply
       }
     })
     .otherwise({redirectTo: '/'})
