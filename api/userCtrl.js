@@ -60,13 +60,28 @@ exports.placedIn = function(req, res, next){
 
 exports.canApply = function(req, res, next){
 	var canApplyto = function(callback){
-		Companies.find({deadline: {$gte: Date.now()}}).exec(function(err, companies){
-			callback(companies);
+		Companies.find({
+			deadline: {$gte: Date.now()},
+			date: {$gte: Date.now()},
+			branches: {$all:[req.user.branch]},
+		  "eligibility.tenth": {$lte: req.user.tenth},
+			"eligibility.twelfth": {$lte: req.user.twelfth},
+			"eligibility.btech": {$lte: req.user.btech}
+		}).exec(function(err, companies){
+			if(err)
+				throw err;
+			if(!companies.length){
+				res.json({
+					"companies":null
+				})
+			}else{
+					callback(companies);
+			}
 		});
 	}
 	canApplyto(function (companies) {
-				res.json({
-					"message":companies
-			});
+			res.json({
+				"companies":companies
 		});
+	});
 }
