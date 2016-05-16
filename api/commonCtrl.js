@@ -53,6 +53,25 @@ exports.editCompany =  function(req, res, next){
       });
 }
 
+exports.deleteCompany =  function(req, res, next){
+  Company.remove({_id:req.params.id},function(err,company){
+    Company.find().exec(function(err, companies){
+      if(err)
+        throw err;
+      if(!companies.length){
+        res.json({
+          "message":"No company visited",
+          "companies":null
+        });
+      }else{
+        res.json({
+          "companies":companies
+        });
+      }
+    });
+  });
+}
+
 exports.companies = function(req, res, next){
   Company.find().exec(function(err, companies){
     if(err)

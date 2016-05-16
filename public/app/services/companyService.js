@@ -16,6 +16,21 @@ app.factory('companyService', function($http, $q){
       return deferred.promise;
     },
 
+    delete : function(id){
+      var deferred = $q.defer();
+      $http({
+        method: 'DELETE',
+        url: '/api/company/delete/'+id
+      })
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(status){
+        deferred.reject(status);
+      });
+      return deferred.promise;
+    },
+
     companies : function(){
       var deferred = $q.defer();
       $http({

@@ -26,6 +26,7 @@ router.get('/company/visited', auth.isLoggedIn, common.companies);
 router.get('/company/posted', auth.isLoggedIn, roles.isAuthorized, common.posted);
 router.post('/company/add', auth.isLoggedIn, roles.isAuthorized, common.addCompany);
 router.post('/company/edit', auth.isLoggedIn, roles.isAuthorized, common.editCompany);
+router.delete('/company/delete/:id', auth.isLoggedIn, roles.isAuthorized, common.deleteCompany);
 router.get('/company/canApply', auth.isLoggedIn, roles.isUser, user.canApply);
 
 /*

@@ -1,4 +1,6 @@
-app.controller('companyCtrl', function($scope, $window, $route, $location, companyService){
+app.controller('companyCtrl', function($scope, $window, $route, $location, companyService, identityService){
+
+  $scope.identity = identityService;
 
   $scope.addCompany = function(){
     var newCompany = {
@@ -17,6 +19,15 @@ app.controller('companyCtrl', function($scope, $window, $route, $location, compa
     companyService.add(newCompany).
     then (function(data){
       $location.path('/');
+    }, function(status){
+      console.log(status);
+    });
+  }
+
+  $scope.deleteCompany = function(id){
+    companyService.delete(id).
+    then (function(data){
+      $scope.companies = data;
     }, function(status){
       console.log(status);
     });
