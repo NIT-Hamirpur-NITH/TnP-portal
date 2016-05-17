@@ -16,6 +16,7 @@ exports.addCompany =  function(req, res, next){
     company.eligibility.twelfth=input.twelfth;
     company.eligibility.btech=input.btech;
     company.postedBy=req.user._id;
+    company.apply=0;
     company.save();
     res.json({
       "message":company

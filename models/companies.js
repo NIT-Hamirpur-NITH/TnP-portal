@@ -14,7 +14,8 @@ var companiesSchema = new schema({
 	},
 	process: {type:String},
 	deadline: {type: Date},
-	postedBy: {type: String}
+	postedBy: {type: String},
+	apply: {type: Boolean}
 });
 
 var companiesModel = mongoose.model('companies',companiesSchema);
