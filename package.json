@@ -11,6 +11,7 @@
     "csv": "^0.4.6",
     "debug": "~2.2.0",
     "ejs": "~2.3.3",
+    "exceljs": "^0.2.8",
     "express": "~4.13.1",
     "express-session": "^1.12.1",
     "fast-csv": "^1.0.0",
