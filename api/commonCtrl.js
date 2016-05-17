@@ -74,6 +74,7 @@ exports.deleteCompany =  function(req, res, next){
 }
 
 exports.companies = function(req, res, next){
+  var companiesArr = [];
   Company.find().exec(function(err, companies){
     if(err)
       throw err;
@@ -83,11 +84,20 @@ exports.companies = function(req, res, next){
         "companies":null
       });
     }else{
-      res.json({
-        "companies":companies
-      });
-    }
-  });
+      for(i = 0; i < companies.length; i++){
+        var company = companies[i];
+          if((company.deadline >= new Date()) && (company.date >= new Date()) && (company.branches.indexOf(req.user.branch)>-1) && (company.eligibility.tenth <= req.user.tenth) && (company.eligibility.twelfth <= req.user.twelfth) && (company.eligibility.btech <= req.user.btech)){
+            company.apply = 1;
+          }else{
+            company.apply = 0;
+          }
+          companiesArr.push(company);
+        }
+        res.json({
+          "companies":companiesArr
+        })
+      }
+    });
 }
 
 exports.posted =  function(req, res, next){

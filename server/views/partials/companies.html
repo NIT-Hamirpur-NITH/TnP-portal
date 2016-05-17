@@ -29,7 +29,10 @@
             <a class="btn btn-primary" href="#" role="button">Edit</a>
           </div>
           <div ng-switch-when="user">
-            <a class="btn btn-primary" href="#" role="button">Apply</a>
+            <div ng-switch on="company.apply">
+              <a class="btn btn-primary btn-success" href="#" role="button" ng-switch-when="true">Apply</a>
+              <a class="btn btn-primary btn-danger" href="#" role="button" ng-switch-when="false" disabled>Apply</a>
+            </div>
           </div>
         </div>
       </div>
