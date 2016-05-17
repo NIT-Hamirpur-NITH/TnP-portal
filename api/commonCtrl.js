@@ -17,6 +17,7 @@ exports.addCompany =  function(req, res, next){
     company.eligibility.btech=input.btech;
     company.postedBy=req.user._id;
     company.apply=0;
+    company.applied=0;
     company.save();
     res.json({
       "message":company
@@ -86,10 +87,17 @@ exports.companies = function(req, res, next){
     }else{
       for(i = 0; i < companies.length; i++){
         var company = companies[i];
-          if((company.deadline >= new Date()) && (company.date >= new Date()) && (company.branches.indexOf(req.user.branch)>-1) && (company.eligibility.tenth <= req.user.tenth) && (company.eligibility.twelfth <= req.user.twelfth) && (company.eligibility.btech <= req.user.btech)){
-            company.apply = 1;
-          }else{
-            company.apply = 0;
+          if(req.user.roles.indexOf("user")>-1){
+            if((company.deadline >= new Date()) && (company.date >= new Date()) && (company.branches.indexOf(req.user.branch)>-1) && (company.eligibility.tenth <= req.user.tenth) && (company.eligibility.twelfth <= req.user.twelfth) && (company.eligibility.btech <= req.user.btech)){
+              company.apply = 1;
+            }else{
+              company.apply = 0;
+            }
+            if(req.user.appliedFor.indexOf(company._id)>-1){
+              company.applied = 1;
+            }else{
+              company.applied = 0;
+            }
           }
           companiesArr.push(company);
         }

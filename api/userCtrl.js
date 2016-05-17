@@ -149,10 +149,7 @@ exports.apply = function(req, res, next){
 					worksheet.addRow(userarr);
 					workbook.xlsx.writeFile('data/' + company_name.toUpperCase() + '.xlsx')
 			    .then(function() {
-						res.json({
-							"message":"Data written to file.",
-							"applied":true
-						})
+						// ADDED TO WORKBOOK
 			    });
 				});
 			}else{
@@ -180,20 +177,43 @@ exports.apply = function(req, res, next){
 
 				workbook.xlsx.writeFile('data/'+ company_name.toUpperCase() +'.xlsx')
 		    .then(function() {
-					res.json({
-						"message":"Data written to file.",
-						"applied":true
-					})
+					// WORKBOOK CREATED
 		    });
 			}
 		})
 	})
+
 	User.findOne({_id:req.user.id},function(err,user){
 		if(user.appliedFor.indexOf(req.params.companyid)>-1){
-			//ALREADY APPLIED
+			// ALREADY APPLIED
 		}else{
 			user.appliedFor.push(req.params.companyid);
 	    user.save();
+			//APPLIED
+			var companiesArr = [];
+		  Company.find().exec(function(err, companies){
+		    if(err)
+		      throw err;
+	      for(i = 0; i < companies.length; i++){
+	        var company = companies[i];
+	          if(req.user.roles.indexOf("user")>-1){
+	            if((company.deadline >= new Date()) && (company.date >= new Date()) && (company.branches.indexOf(req.user.branch)>-1) && (company.eligibility.tenth <= req.user.tenth) && (company.eligibility.twelfth <= req.user.twelfth) && (company.eligibility.btech <= req.user.btech)){
+	              company.apply = 1;
+	            }else{
+	              company.apply = 0;
+	            }
+	            if(company.id == req.params.companyid){
+	              company.applied = 1;
+	            }else{
+	              company.applied = 0;
+	            }
+	          }
+	          companiesArr.push(company);
+	        }
+	        res.json({
+	          "companies":companiesArr
+	        })
+	    });
 		}
 	});
 }

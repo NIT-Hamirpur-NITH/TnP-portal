@@ -36,7 +36,7 @@ app.controller('companyCtrl', function($scope, $window, $route, $location, compa
   $scope.apply = function(id){
     companyService.apply(id).
     then (function(data){
-      
+      $scope.companies = data;
     }, function(status){
       console.log(status);
     });
