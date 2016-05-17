@@ -74,6 +74,21 @@ app.factory('companyService', function($http, $q){
         deferred.reject(status);
       });
       return deferred.promise;
+    },
+
+    apply : function(id){
+      var deferred = $q.defer();
+      $http({
+        method: 'POST',
+        url: '/api/apply/'+id
+      })
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(status){
+        deferred.reject(status);
+      });
+      return deferred.promise;
     }
   }
 });

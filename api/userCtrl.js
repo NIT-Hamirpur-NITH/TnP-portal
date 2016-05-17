@@ -102,9 +102,6 @@ exports.apply = function(req, res, next){
 
 	getCompany(req, function(data){
 		company_name = data.name;
-		/*
-		* Reading the file first to get the range
-		*/
 		function checkCompanyDatabase(req, callback){
 		  fs.readdir('data/', function(err, files){
 		    if(err)
@@ -191,6 +188,14 @@ exports.apply = function(req, res, next){
 			}
 		})
 	})
+	User.findOne({_id:req.user.id},function(err,user){
+		if(user.appliedFor.indexOf(req.params.companyid)>-1){
+			//ALREADY APPLIED
+		}else{
+			user.appliedFor.push(req.params.companyid);
+	    user.save();
+		}
+	});
 }
 
 /*

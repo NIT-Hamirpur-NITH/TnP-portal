@@ -30,8 +30,8 @@
           </div>
           <div ng-switch-when="user">
             <div ng-switch on="company.apply">
-              <a class="btn btn-primary btn-success" href="#" role="button" ng-switch-when="true">Apply</a>
-              <a class="btn btn-primary btn-danger" href="#" role="button" ng-switch-when="false" disabled>Apply</a>
+              <button class="btn btn-success" ng-click="apply(company._id)" ng-switch-when="true"><span style="font-family:Lato; font-size:14px">Apply</span></button>
+              <button class="btn btn-danger" ng-switch-when="false" disabled><span style="font-family:Lato; font-size:14px">Apply</span></button>
             </div>
           </div>
         </div>

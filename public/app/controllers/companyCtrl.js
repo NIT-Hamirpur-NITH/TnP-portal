@@ -33,6 +33,14 @@ app.controller('companyCtrl', function($scope, $window, $route, $location, compa
     });
   }
 
+  $scope.apply = function(id){
+    companyService.apply(id).
+    then (function(data){
+      
+    }, function(status){
+      console.log(status);
+    });
+  }
   $scope.companies = $route.current.locals.companies;
   $scope.posted = $route.current.locals.posted;
   $scope.canApply = $route.current.locals.canApply;
