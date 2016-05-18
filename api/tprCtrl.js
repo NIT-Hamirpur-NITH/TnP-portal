@@ -157,3 +157,46 @@ exports.ifBranch = function(req, res, next){
     }
   })
 }
+
+exports.getUsers= function(req, res){
+  User.find().exec(function(err, users){
+    if(err)
+      throw err;
+    if(!users.length){
+      res.json({
+        "message":"No student has applied yet.",
+        "users":null
+      })
+    }else{
+      var userarr = [];
+      var companies = [];
+      var com_ids = [];
+      for(i=0; i<users.length;i++){
+        var user = users[i];
+        if(user.appliedFor.length){
+          for(j=0; j<user.appliedFor.length;j++){
+            com_ids.push(user.appliedFor[j]);
+            // userarr.push(user);
+          }
+          userarr.push(user);
+        }
+      }
+
+      function getAssocCompanies(req, callback){
+        Company.find({_id: {$in:com_ids}}).exec(function(err, company){
+          if(err)
+            throw err;
+          callback(company)
+        })
+      }
+
+      getAssocCompanies(req, function(company){
+        res.json({
+          "message":"Students who have applied.",
+          "users":userarr,
+          "companies":company
+        })
+      })
+    }
+  })
+}

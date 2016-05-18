@@ -94,6 +94,14 @@ var routeCheck = {
       },function(status){
         console.log(status);
       }))
+    },
+    users: function(placementService){
+      return (placementService.getUsers()
+      .then (function(data){
+        return data;
+      },function(status){
+        console.log(status);
+      }))
     }
   },
 
@@ -214,6 +222,14 @@ app.config(function($routeProvider, $locationProvider){
       resolve: {
         "auth": routeCheck.user.auth,
         "applied": routeCheck.user.applied
+      }
+    })
+    .when('/placement/add',{
+      templateUrl: '/partials/addplacement.html',
+      controller: 'placementCtrl',
+      resolve: {
+        "auth": routeCheck.tpr.auth,
+        "users": routeCheck.tpr.users
       }
     })
     .otherwise({redirectTo: '/'})
