@@ -12,14 +12,28 @@ app.controller('placementCtrl', function($scope, $window, $route, $location, pla
         for(k=0;k<res.companies.length;k++){
           var com = res.companies[k];
           if(com_id === com._id){
-            var user_company = {
-              'user_id':user._id,
-              'name':user.name,
-              'username':user.username,
-              'branch':user.branch,
-              'company':com.name,
-              'company_id':com._id,
-              'status':false
+            if(user.placedIn.indexOf(com_id)>-1){
+              var user_company = {
+                'user_id':user._id,
+                'name':user.name,
+                'username':user.username,
+                'branch':user.branch,
+                'company':com.name,
+                'company_id':com._id,
+                'status':false,
+                'placed':true
+              }
+            }else{
+              var user_company = {
+                'user_id':user._id,
+                'name':user.name,
+                'username':user.username,
+                'branch':user.branch,
+                'company':com.name,
+                'company_id':com._id,
+                'status':false,
+                'placed':false
+              }
             }
             stuApp.push(user_company);
           }
