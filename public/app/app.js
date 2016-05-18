@@ -34,6 +34,14 @@ var routeCheck = {
       },function(status){
         console.log(status);
       }))
+    },
+    applied: function(companyService){
+      return (companyService.appliedFor()
+      .then (function(data){
+        return data;
+      },function(status){
+        console.log(status);
+      }))
     }
   },
 
@@ -198,6 +206,14 @@ app.config(function($routeProvider, $locationProvider){
       resolve: {
         "auth": routeCheck.user.auth,
         "canApply": routeCheck.user.canApply
+      }
+    })
+    .when('/company/applied',{
+      templateUrl: '/partials/applied.html',
+      controller: 'companyCtrl',
+      resolve: {
+        "auth": routeCheck.user.auth,
+        "applied": routeCheck.user.applied
       }
     })
     .otherwise({redirectTo: '/'})
