@@ -11,10 +11,12 @@ app.controller('placementCtrl', function($scope, $window, $route, $location, pla
         var com = res.companies[k];
         if(com_id === com._id){
           var user_company = {
+            'user_id':user._id,
             'name':user.name,
             'username':user.username,
             'branch':user.branch,
             'company':com.name,
+            'company_id':com._id,
             'status':false
           }
           stuApp.push(user_company);
@@ -23,4 +25,13 @@ app.controller('placementCtrl', function($scope, $window, $route, $location, pla
     }
   }
   $scope.applied = stuApp;
+
+  $scope.addplacement = function(user_id, company_id){
+    placementService.addPlacement(user_id, company_id).
+    then (function(data){
+      // $scope.companies = data;
+    }, function(status){
+      console.log(status);
+    });
+  }
 });

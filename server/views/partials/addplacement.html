@@ -18,7 +18,7 @@
         <td>{{data.username}}</td>
         <td>{{data.branch}}</td>
         <td>{{data.company}}</td>
-        <td><button type="button" class="btn btn-primary">Click if Placed</button></td> 
+        <td><button type="button" class="btn btn-primary" ng-click="addplacement(data.user_id, data.company_id)">Click if Placed</button></td>
         <!-- <td ng-hide="data.invite"><button type="button" class="btn btn-primary" disabled>Placed</button></td> -->
       </tr>
     </table>

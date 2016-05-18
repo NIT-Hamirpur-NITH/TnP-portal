@@ -39,11 +39,12 @@ exports.placedIn = function(req, res, next){
         if(!company){
           res.json({
             "message":"Not Placed yet",
-            "company":undefined
+            "company":null
           });
         }else{
           res.json({
-            "placedIn":company
+						"message":"Placed",
+            "placedIn":companies
           });
         }
       });

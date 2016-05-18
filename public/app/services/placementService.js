@@ -13,6 +13,21 @@ app.factory('placementService', function($http, $q){
         deferred.reject(status);
       });
       return deferred.promise;
+    },
+
+    addPlacement : function(user, company){
+      var deferred = $q.defer();
+      $http({
+        method: 'POST',
+        url: '/api/addplacement/'+user+'/'+company,
+      })
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(status){
+        deferred.reject(status);
+      });
+      return deferred.promise;
     }
   }
 });

@@ -42,6 +42,7 @@ router.get('/ifDb', auth.isLoggedIn, roles.isTpr, tpr.ifDb);
 router.post('/uploadDb', auth.isLoggedIn, roles.isTpr, tpr.uploadDatabase);
 router.post('/addDb', auth.isLoggedIn, roles.isTpr, tpr.addDatabase);
 router.post('/ifAddedToDb', auth.isLoggedIn, roles.isTpr, tpr.getDatabase);
+router.post('/addplacement/:user_id/:company_id', auth.isLoggedIn, roles.isTpr, tpr.addPlacement);
 /*
 *ADMIN ROUTES
 */

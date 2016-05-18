@@ -200,3 +200,18 @@ exports.getUsers= function(req, res){
     }
   })
 }
+
+exports.addPlacement= function(req, res){
+  User.findOne({_id:req.params.user_id}).exec(function(err, user){
+    if(err)
+      throw err;
+    user.placedIn.push(req.params.company_id);
+    user.save(function(err){
+      if(err)
+        throw err;
+    });
+  })
+  res.json({
+    "message":"Placement added"
+  })
+}
