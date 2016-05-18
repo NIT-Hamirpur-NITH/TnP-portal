@@ -74,7 +74,13 @@ app.controller('placementCtrl', function($scope, $window, $route, $location, pla
   $scope.addplacement = function(user_id, company_id){
     placementService.addPlacement(user_id, company_id).
     then (function(data){
-      // $scope.companies = data;
+      for(i=0;i<$scope.applied.length;i++){
+        var user = $scope.applied[i];
+        if(user.company_id === data.company){
+          user.placed = true;
+        }
+      }
+      console.log($scope.applied);
     }, function(status){
       console.log(status);
     });

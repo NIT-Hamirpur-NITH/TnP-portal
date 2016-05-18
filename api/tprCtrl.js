@@ -212,6 +212,7 @@ exports.addPlacement= function(req, res){
     });
   })
   res.json({
-    "message":"Placement added"
+    "message":"Placement added",
+    "company":req.params.company_id
   })
 }
