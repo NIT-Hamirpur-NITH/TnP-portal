@@ -1,0 +1,27 @@
+<div class="col-md-10">
+  <div ng-if="!placed.length">
+    <h1 class="text-center">No one placed yet.</h1><br />
+  </div>
+  <div ng-if="placed.length">
+    <h1 class="text-center">List of placed students.</h1><br />
+    <table border="1" class="table table-bordered table-hover table-striped">
+      <tr class="info">
+        <th>S.no</th>
+        <th>Name</th>
+        <th>Roll no</th>
+        <th>Branch</th>
+        <th>Company</th>
+        <th>Package</th>
+      </tr>
+      <tr ng-repeat="data in placed | orderBy:'name'">
+        <td>{{$index + 1}}</td>
+        <td>{{data.name}}</td>
+        <td>{{data.username}}</td>
+        <td>{{data.branch}}</td>
+        <td>{{data.company}}</td>
+        <td>{{data.package}} lpa</td>
+      </tr>
+    </table>
+  </div>
+  <!-- Should have a posted by note -->
+</div>

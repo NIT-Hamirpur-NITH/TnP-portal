@@ -166,11 +166,19 @@ exports.placed =  function(req, res){
       Company.find({_id: {$in:com_ids}}).exec(function(err, company){
         if(err)
           throw err;
-        res.json({
-          "message":"List of placed students",
-          "users":userarr,
-          "companies":company
-        })
+        if(!company.length){
+          res.json({
+            "message":"No placed students.",
+            "placedStudents":false
+          })
+        }else{
+          res.json({
+            "message":"List of placed students",
+            "users":userarr,
+            "companies":company,
+            "placedStudents":true
+          })
+        }
       })
     }
   });

@@ -12,6 +12,14 @@ var routeCheck = {
   noUser: {
     auth: function(authService){
       return authService.noAuthorize();
+    },
+    placedStuds: function(placementService){
+      return (placementService.placedstudents()
+      .then (function(data){
+        return data;
+      },function(status){
+        console.log(status);
+      }))
     }
   },
 
@@ -149,7 +157,9 @@ app.config(function($routeProvider, $locationProvider){
     .when('/home', {
       templateUrl: '/partials/home.html',
       controller: 'homeCtrl',
-      resolve: routeCheck.user
+      resolve:{
+        "auth":routeCheck.user.auth
+      }
     })
     .when('/addtpr',{
       templateUrl: '/partials/addtpr.html',
@@ -246,6 +256,14 @@ app.config(function($routeProvider, $locationProvider){
       resolve: {
         "auth": routeCheck.user.auth,
         "placedin": routeCheck.user.placedIn
+      }
+    })
+    .when('/placed',{
+      templateUrl: '/partials/placed.html',
+      controller: 'placementCtrl',
+      resolve: {
+        "auth": routeCheck.user.auth,
+        "placed": routeCheck.noUser.placedStuds
       }
     })
     .otherwise({redirectTo: '/'})

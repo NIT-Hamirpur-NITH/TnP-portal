@@ -43,7 +43,21 @@ app.factory('placementService', function($http, $q){
         deferred.reject(status);
       });
       return deferred.promise;
-    }
+    },
 
+    placedstudents : function(){
+      var deferred = $q.defer();
+      $http({
+        method: 'GET',
+        url: '/api/placed/all',
+      })
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(status){
+        deferred.reject(status);
+      });
+      return deferred.promise;
+    }
   }
 });
