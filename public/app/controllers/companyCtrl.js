@@ -33,6 +33,20 @@ app.controller('companyCtrl', function($scope, $window, $route, $location, compa
     });
   }
 
+  $scope.download = function(name){
+    companyService.downloadRes(name).
+    then (function(data){
+      // var blob = new Blob([data], {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+      // var objectUrl = URL.createObjectURL(blob);
+      // window.open(objectUrl);
+      // console.log(data);
+      // saveAs(blob, 'xyz' + '.xlsx');
+      // navigator.msSaveBlob(blob, 'Lenna.xlsx');
+    }, function(status){
+      console.log(status);
+    });
+  }
+
   $scope.apply = function(id){
     companyService.apply(id).
     then (function(data){

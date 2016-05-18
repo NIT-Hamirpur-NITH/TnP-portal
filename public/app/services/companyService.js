@@ -31,6 +31,21 @@ app.factory('companyService', function($http, $q){
       return deferred.promise;
     },
 
+    downloadRes : function(name){
+      var deferred = $q.defer();
+      $http({
+        method: 'GET',
+        url: '/api/download/'+name
+      })
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(status){
+        deferred.reject(status);
+      });
+      return deferred.promise;
+    },
+
     companies : function(){
       var deferred = $q.defer();
       $http({

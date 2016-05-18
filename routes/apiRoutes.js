@@ -32,6 +32,7 @@ router.post('/company/edit', auth.isLoggedIn, roles.isAuthorized, common.editCom
 router.delete('/company/delete/:id', auth.isLoggedIn, roles.isAuthorized, common.deleteCompany);
 router.get('/company/canApply', auth.isLoggedIn, roles.isUser, user.canApply);
 router.get('/company/applied/all', auth.isLoggedIn, roles.isTpr, tpr.getUsers);
+router.get('/download/:filename', auth.isLoggedIn, roles.isAuthorized, common.download);
 
 /*
 *TPR ROUTES

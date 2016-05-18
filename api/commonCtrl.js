@@ -185,3 +185,10 @@ exports.placed =  function(req, res){
     }
   });
 }
+
+exports.download =  function(req, res){
+  var filename = req.params.filename.toUpperCase();
+  var path=require('path');
+  var file = req.params.file;
+  res.download(path.resolve(".")+'/data/'+filename+'.xlsx');
+}
