@@ -46,24 +46,26 @@ app.controller('placementCtrl', function($scope, $window, $route, $location, pla
   if($route.current.locals.placed){
     var res = $route.current.locals.placed;
     var stuApp = [];
-    for(i=0;i<res.users.length;i++){
-      var user = res.users[i];
-      for(j=0;j<user.placedIn.length;j++){
-        var com_id = user.placedIn[j];
-        for(k=0;k<res.companies.length;k++){
-          var com = res.companies[k];
-          if(com_id === com._id){
-            var user_company = {
-              'user_id':user._id,
-              'name':user.name,
-              'username':user.username,
-              'branch':user.branch,
-              'company':com.name,
-              'package':com.package,
-              'company_id':com._id,
-              'status':false
+    if(res.users){
+        for(i=0;i<res.users.length;i++){
+        var user = res.users[i];
+        for(j=0;j<user.placedIn.length;j++){
+          var com_id = user.placedIn[j];
+          for(k=0;k<res.companies.length;k++){
+            var com = res.companies[k];
+            if(com_id === com._id){
+              var user_company = {
+                'user_id':user._id,
+                'name':user.name,
+                'username':user.username,
+                'branch':user.branch,
+                'company':com.name,
+                'package':com.package,
+                'company_id':com._id,
+                'status':false
+              }
+              stuApp.push(user_company);
             }
-            stuApp.push(user_company);
           }
         }
       }

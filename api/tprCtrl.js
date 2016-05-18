@@ -6,6 +6,18 @@ var XLSX = require('xlsx');
 var formidable = require('formidable');
 var util = require('util');
 var fs = require('fs');
+var nodemailer = require('nodemailer');
+var CONF_FILE = require('./auth/CONF_FILE.js')
+
+var smtpConfig = {
+  service: 'Gmail',
+  auth: {
+      user: CONF_FILE.EMAIL.username,
+      pass: CONF_FILE.EMAIL.password
+  }
+};
+
+var transporter = nodemailer.createTransport('SMTP',smtpConfig);
 
 exports.getDatabase = function(req, res, next){
   User.find({branch:req.user.branch}).sort({sno:1}).exec(function(err,db){
@@ -109,6 +121,18 @@ exports.inviteAll = function(req, res, next){
       throw err;
     for(i=0; i<user.length;i++){
       var obj = user[i];
+      var mailOptions = {
+          from: '"TnP " <'+ CONF_FILE.EMAIL.username +'>',
+          to: obj.email,
+          subject: 'Registration',
+          text: 'Username : '+obj.username+' and Password : root'
+      };
+
+      transporter.sendMail(mailOptions, function(error, info){
+          if(error){
+              return console.log(error);
+          }
+      });
       obj.invite = true;
       obj.save(function(err){
         if(err)

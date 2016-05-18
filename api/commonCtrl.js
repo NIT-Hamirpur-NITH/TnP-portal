@@ -169,7 +169,9 @@ exports.placed =  function(req, res){
         if(!company.length){
           res.json({
             "message":"No placed students.",
-            "placedStudents":false
+            "placedStudents":false,
+            "users":null,
+            "companies":null
           })
         }else{
           res.json({

@@ -152,7 +152,9 @@ app.config(function($routeProvider, $locationProvider){
     .when('/', {
       templateUrl: '/partials/login.html',
       controller: 'authCtrl',
-      resolve: routeCheck.noUser
+      resolve: {
+        "auth":routeCheck.noUser.auth
+      }
     })
     .when('/home', {
       templateUrl: '/partials/home.html',
@@ -196,12 +198,18 @@ app.config(function($routeProvider, $locationProvider){
     .when('/database',{
       templateUrl: '/partials/database.html',
       controller: 'databaseCtrl',
-      resolve: routeCheck.tpr
+      resolve: {
+        "auth":routeCheck.tpr.auth,
+        "database":routeCheck.tpr.database
+      }
     })
     .when('/database/:branch',{
       templateUrl: '/partials/database.html',
       controller: 'databaseCtrl',
-      resolve: routeCheck.admin
+      resolve: {
+        "auth":routeCheck.admin.auth,
+        "database":routeCheck.admin.database
+      }
     })
     .when('/company/add',{
       templateUrl: '/partials/addCompany.html',
