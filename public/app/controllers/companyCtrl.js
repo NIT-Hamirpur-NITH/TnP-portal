@@ -36,11 +36,28 @@ app.controller('companyCtrl', function($scope, $window, $route, $location, compa
   $scope.apply = function(id){
     companyService.apply(id).
     then (function(data){
+      /*
+      * Filetering companies on the basis of user eligibility and setting them into canApply
+      */
+      var companies_canapply = data.companies;
+      var companiesArr = [];
+      var user = data.user;
+      for(i = 0; i < companies_canapply.length; i++){
+          var company = companies_canapply[i];
+          if((company.branches.indexOf(user.branch)>-1) && (company.eligibility.tenth <= user.tenth) && (company.eligibility.twelfth <= user.twelfth) && (company.eligibility.btech <= user.btech)){
+            companiesArr.push(company);
+          }
+        }
+      var companiesJSON = {
+        "companies":companiesArr
+      };
+      $scope.canApply = companiesJSON;
       $scope.companies = data;
     }, function(status){
       console.log(status);
     });
   }
+
   $scope.companies = $route.current.locals.companies;
   $scope.posted = $route.current.locals.posted;
   $scope.canApply = $route.current.locals.canApply;

@@ -83,8 +83,27 @@ exports.canApply = function(req, res, next){
 		});
 	}
 	canApplyto(function (companies) {
-			res.json({
-				"companies":companies
+		User.findOne({_id:req.user.id},function(err,user){
+			if(user.appliedFor.indexOf(req.params.companyid)>-1){
+				// ALREADY APPLIED
+			}else{
+				//APPLIED
+				var companiesArr = [];
+				for(i = 0; i < companies.length; i++){
+					var company = companies[i];
+						if(req.user.roles.indexOf("user")>-1){
+							if(req.user.appliedFor.indexOf(company.id)>-1){
+								company.applied = 1;
+							}else{
+								company.applied = 0;
+							}
+						}
+						companiesArr.push(company);
+					}
+					res.json({
+						"companies":companiesArr
+					})
+				}
 		});
 	});
 }
@@ -183,14 +202,20 @@ exports.apply = function(req, res, next){
 		})
 	})
 
-	User.findOne({_id:req.user.id},function(err,user){
-		if(user.appliedFor.indexOf(req.params.companyid)>-1){
-			// ALREADY APPLIED
-		}else{
-			user.appliedFor.push(req.params.companyid);
-	    user.save();
-			//APPLIED
-			var companiesArr = [];
+	function sendCompanies(req, callback){
+		User.findOne({_id:req.user.id},function(err,user){
+			if(user.appliedFor.indexOf(req.params.companyid)>-1){
+				// ALREADY APPLIED
+			}else{
+				user.appliedFor.push(req.params.companyid);
+		    user.save();
+				callback(user);
+			}
+		})
+	}
+
+	sendCompanies(req, function(user){
+		var companiesArr = [];
 		  Company.find().exec(function(err, companies){
 		    if(err)
 		      throw err;
@@ -202,7 +227,7 @@ exports.apply = function(req, res, next){
 	            }else{
 	              company.apply = 0;
 	            }
-	            if(company.id == req.params.companyid){
+	            if(user.appliedFor.indexOf(company.id)>-1){
 	              company.applied = 1;
 	            }else{
 	              company.applied = 0;
@@ -211,11 +236,11 @@ exports.apply = function(req, res, next){
 	          companiesArr.push(company);
 	        }
 	        res.json({
-	          "companies":companiesArr
+	          "companies":companiesArr,
+						"user":req.user
 	        })
 	    });
-		}
-	});
+	})
 }
 
 /*

@@ -17,7 +17,12 @@
         Description : {{company.description}}<br />
         Process : {{company.process}}<br />
         <br />
-        <a class="btn btn-success" href="#" role="button">Apply</a>
+        <div ng-if="company.applied">
+          <button class="btn btn-success" disabled><span style="font-family:Lato; font-size:14px">Applied</span></button>
+        </div>
+        <div ng-if="!company.applied">
+          <button class="btn btn-info" ng-click="apply(company._id)"><span style="font-family:Lato; font-size:14px">Apply</span></button>
+        </div>
       </div>
     </div>
   </div>
