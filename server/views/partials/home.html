@@ -1,5 +1,26 @@
 <div class="col-md-10">
-  Welcome {{currentUser.name}}<br />
-  Username: {{currentUser.username}}<br />
-  Branch: {{currentUser.branch}}
+  <center>
+    <h1>Training and placement portal</h1>
+    <h2>Welcome {{currentUser.name}}</h2><br />
+    <div ng-switch on="identity.role()">
+      <div ng-switch-when="admin">
+        <p class="help-text">You are an admin.</p>
+        Email: {{currentUser.email}}
+      </div>
+      <div ng-switch-when="tpr">
+        <p class="help-text">You are a TPR.</p>
+        Branch: {{currentUser.branch}}<br />
+        Email: {{currentUser.email}}<br />
+        Contact no.: {{currentUser.contact}}<br />
+      </div>
+      <div ng-switch-when="user">
+        <p class="help-text">You are a Student.</p>
+        Branch: {{currentUser.branch}}<br />
+        Email: {{currentUser.email}}<br />
+        Contact no.: {{currentUser.contact}}<br />
+      </div>
+    </div>
+    <br />
+    <button class="btn btn-success" disabled>Good luck</button>
+  </center>
 </div>

@@ -143,10 +143,11 @@ exports.apply = function(req, res, next){
 			var userarr = [];
 			userarr[1] = req.user.name;
 			userarr[2] = req.user.email;
-			userarr[3] = req.user.branch;
-			userarr[4] = req.user.tenth;
-			userarr[5] = req.user.twelfth;
-			userarr[6] = req.user.btech;
+			userarr[3] = req.user.contact;
+			userarr[4] = req.user.branch;
+			userarr[5] = req.user.tenth;
+			userarr[6] = req.user.twelfth;
+			userarr[7] = req.user.btech;
 
 			if(data){
 				var workbook = new Excel.Workbook();
@@ -177,6 +178,7 @@ exports.apply = function(req, res, next){
 				worksheet.columns = [
 				    { header: 'Name', key: 'name', width: 20 },
 				    { header: 'Email', key: 'email', width: 32 },
+						{ header: 'Contact', key: 'contact', width: 20 },
 						{ header: 'Branch', key: 'branch', width: 10 },
 						{ header: '10th %', key: 'tenth', width: 10 },
 						{ header: '12th %', key: 'twelfth', width: 10 },

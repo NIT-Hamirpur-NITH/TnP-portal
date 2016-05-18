@@ -8,6 +8,7 @@ var userSchema = new schema ({
 	name: {type: String, required: true},
 	email: {type: String, required: true},
 	branch: {type: String, required:true},
+	contact: {type: Number, required:true},
 	appliedFor: [String],
 	placedIn: [String],
 	roles: [String],
