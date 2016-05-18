@@ -141,3 +141,37 @@ exports.listTpr =  function(req, res, next){
     }
   });
 }
+
+exports.placed =  function(req, res){
+  User.find().exec(function(err, users){
+    if(err)
+      throw err;
+    if(!users.length){
+      res.json({
+        "message":"No students placed.",
+        "users":users
+      });
+    }else{
+      var userarr = [];
+      var com_ids = [];
+      for(i=0; i<users.length;i++){
+        var user = users[i];
+        if(user.placedIn.length){
+          for(j=0; j<user.placedIn.length;j++){
+            com_ids.push(user.placedIn[j]);
+          }
+          userarr.push(user);
+        }
+      }
+      Company.find({_id: {$in:com_ids}}).exec(function(err, company){
+        if(err)
+          throw err;
+        res.json({
+          "message":"List of placed students",
+          "users":userarr,
+          "companies":company
+        })
+      })
+    }
+  });
+}
