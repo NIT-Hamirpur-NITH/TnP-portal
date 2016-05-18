@@ -16,7 +16,7 @@ router.post('/logout', auth.logout);
 /*
 /USER ROUTES
 */
-router.get('/appliedFor', auth.isLoggedIn, roles.isUser, user.appliedFor);
+router.get('/company/appliedFor', auth.isLoggedIn, roles.isUser, user.appliedFor);
 router.get('/placedIn', auth.isLoggedIn, roles.isUser, user.placedIn);
 router.get('/canApply', auth.isLoggedIn, roles.isUser, user.canApply);
 router.post('/apply/:companyid', auth.isLoggedIn, roles.isUser, user.apply);

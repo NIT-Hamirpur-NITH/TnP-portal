@@ -6,31 +6,21 @@ var fs = require('fs');
 var Excel = require('exceljs');			//Most important
 
 exports.appliedFor = function(req, res, next){
-	User.findOne({_id: req.user._id}).exec(function(err, user){
-    if(err)
-      throw err;
-    if(!user){
-      res.json({
-        "status":"error.",
-        "message":"No user found."
-      })
-    }else{
-      Company.find({_id: {$in:user.appliedFor}}).exec(function(err, company){
-        if(err)
-          throw err;
-        if(!company){
-          res.json({
-            "message":"Not applied",
-            "company":undefined
-          });
-        }else{
-          res.json({
-            "appliedFor":company,
-          });
-        }
-      });
-    }
-  });
+	Company.find({_id: {$in:req.user.appliedFor}}).exec(function(err, companies){
+		if(err)
+			throw err;
+		if(!companies.length){
+			res.json({
+				"message":"Not applied",
+				"company":null
+			});
+		}else{
+			res.json({
+				"message":"Applied",
+				"companies":companies
+			});
+		}
+	});
 }
 
 exports.placedIn = function(req, res, next){
