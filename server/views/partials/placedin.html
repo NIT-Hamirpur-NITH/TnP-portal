@@ -1,0 +1,18 @@
+<div class="col-md-10">
+  <div ng-if="!placedin.placedIn">
+    <h1 class="text-center">Not placed Yet.</h1><br />
+  </div>
+  <div ng-if="placedin.placedIn">
+    <h1 class="text-center">List of companies you are placed in.</h1>
+    <div ng-repeat="company in placedin.placedIn | orderBy:'company.deadline':true">
+      <div class="jumbotron">
+        <h3>{{$index + 1}}. {{company.name | uppercase}}</h3>
+        Package : {{company.package}} lpa<br />
+        Date of visiting : {{company.date | date:'dd-MM-yyyy'}}<br />
+        Description : {{company.description}}<br /><br />
+        <button class="btn btn-success" disabled><span style="font-family:Lato; font-size:14px">Status : Placed</span></button>
+      </div>
+    </div>
+  </div>
+  <!-- Should have a posted by note -->
+</div>

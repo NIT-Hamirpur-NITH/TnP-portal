@@ -42,6 +42,14 @@ var routeCheck = {
       },function(status){
         console.log(status);
       }))
+    },
+    placedIn: function(placementService){
+      return (placementService.placedInCompany()
+      .then (function(data){
+        return data;
+      },function(status){
+        console.log(status);
+      }))
     }
   },
 
@@ -230,6 +238,14 @@ app.config(function($routeProvider, $locationProvider){
       resolve: {
         "auth": routeCheck.tpr.auth,
         "users": routeCheck.tpr.users
+      }
+    })
+    .when('/placedin',{
+      templateUrl: '/partials/placedin.html',
+      controller: 'placementCtrl',
+      resolve: {
+        "auth": routeCheck.user.auth,
+        "placedin": routeCheck.user.placedIn
       }
     })
     .otherwise({redirectTo: '/'})

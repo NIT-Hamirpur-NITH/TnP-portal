@@ -36,7 +36,7 @@ exports.placedIn = function(req, res, next){
       Company.find({_id: {$in:user.placedIn}}).exec(function(err, company){
         if(err)
           throw err;
-        if(!company){
+        if(!company.length){
           res.json({
             "message":"Not Placed yet",
             "company":null
@@ -44,7 +44,7 @@ exports.placedIn = function(req, res, next){
         }else{
           res.json({
 						"message":"Placed",
-            "placedIn":companies
+            "placedIn":company
           });
         }
       });
