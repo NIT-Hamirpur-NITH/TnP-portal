@@ -80,7 +80,7 @@ app.controller('placementCtrl', function($scope, $window, $route, $location, pla
     then (function(data){
       for(i=0;i<$scope.applied.length;i++){
         var user = $scope.applied[i];
-        if(user.company_id === data.company){
+        if((user.company_id === data.company) && (user.user_id === data.user)){
           user.placed = true;
         }
       }

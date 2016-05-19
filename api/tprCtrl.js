@@ -237,6 +237,7 @@ exports.addPlacement= function(req, res){
   })
   res.json({
     "message":"Placement added",
-    "company":req.params.company_id
+    "company":req.params.company_id,
+    "user":req.params.user_id
   })
 }
