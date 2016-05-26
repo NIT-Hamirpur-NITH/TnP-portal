@@ -132,6 +132,7 @@ exports.inviteAll = function(req, res, next){
           if(error){
               return console.log(error);
           }
+          console.log('Email send: ' + info.response);
       });
       obj.invite = true;
       obj.save(function(err){

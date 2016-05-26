@@ -2,6 +2,18 @@ var User = require('../models/users');
 var Company = require('../models/companies');
 var Tpr = require('../models/tpr');
 
+var nodemailer = require('nodemailer');
+var CONF_FILE = require('./auth/CONF_FILE.js')
+
+var smtpConfig = {
+  service: 'Gmail',
+  auth: {
+      user: CONF_FILE.EMAIL.username,
+      pass: CONF_FILE.EMAIL.password
+  }
+};
+var transporter = nodemailer.createTransport('SMTP',smtpConfig);
+
 exports.addCompany =  function(req, res, next){
     var input = req.body;
     var company = new Company();
@@ -19,6 +31,27 @@ exports.addCompany =  function(req, res, next){
     company.apply=0;
     company.applied=0;
     company.save();
+
+    User.find().exec(function(err, user){
+      if(err)
+        throw err;
+      for(i=0; i<user.length;i++){
+        var obj = user[i];
+        var mailOptions = {
+            from: '"TnP " <'+ CONF_FILE.EMAIL.username +'>',
+            to: obj.email,
+            subject: 'Registration',
+            text: 'Company name:'+company.name+'. Kindly Check your dashboard on TnP Portal and check eligibilty.'
+        };
+
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                return console.log(error);
+            }
+            console.log('Email send: ' + info.response);
+        });
+      }
+    })
     res.json({
       "message":company
     })
