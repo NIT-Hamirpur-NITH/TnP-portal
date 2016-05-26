@@ -2,22 +2,22 @@
   <div ng-if="!applied.length">
     <h1 class="text-center">No student has applied yet.</h1><br />
   </div>
-  <form class="form-horizontal">
-    <div class="form-group">
-      <div class="row">
-        <label for="cname" class="col-md-1 col-md-offset-3 control-label">Search</label>
-        <div class="col-md-4">
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
-              <input type="text" class="form-control" ng-model="search" placeholder="Search">
+  <div ng-if="applied.length">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <div class="row">
+          <label for="cname" class="col-md-1 col-md-offset-3 control-label">Search</label>
+          <div class="col-md-4">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+                <input type="text" class="form-control" ng-model="search" placeholder="Search">
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </form>
-  <div ng-if="applied.length">
+    </form>
     <table border="1" class="table table-bordered table-hover table-striped">
       <tr class="info">
         <th>S.no</th>

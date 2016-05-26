@@ -19,14 +19,16 @@
         <br />
         <div ng-switch on="identity.role()">
           <div ng-switch-when="admin">
-            <button class="btn btn-primary" ng-click="download(company.name)"><span style="font-family:Lato; font-size:13px">Response</span></button>
+            <!-- <button class="btn btn-primary" ng-click="download(company.name)"><span style="font-family:Lato; font-size:13px">Response</span></button> -->
             <button class="btn btn-primary" ng-click="deleteCompany(company._id)"><span style="font-family:Lato; font-size:13px">Delete</span></button>
-            <a class="btn btn-primary" href="#" role="button">Edit</a>
+            <!-- <button class="btn btn-primary" ng-click="editCompany(company._id)"><span style="font-family:Lato; font-size:13px">Edit</span></button> -->
+            <!-- <a class="btn btn-primary" href="/company/edit/{{company._id}}" role="button">Edit</a> -->
           </div>
           <div ng-switch-when="tpr">
-            <button class="btn btn-primary" ng-click="download(company.name)"><span style="font-family:Lato; font-size:13px">Response</span></button>
+            <!-- <button class="btn btn-primary" ng-click="download(company.name)"><span style="font-family:Lato; font-size:13px">Response</span></button> -->
             <button class="btn btn-primary" ng-click="deleteCompany(company._id)"><span style="font-family:Lato; font-size:13px">Delete</span></button>
-            <a class="btn btn-primary" href="#" role="button">Edit</a>
+            <!-- <button class="btn btn-primary" ng-click="editCompany(company._id)"><span style="font-family:Lato; font-size:13px">Edit</span></button> -->
+            <!-- <a class="btn btn-primary" href="/company/edit/{{company._id}}" role="button">Edit</a> -->
           </div>
           <div ng-switch-when="user">
             <div ng-if="company.applied">

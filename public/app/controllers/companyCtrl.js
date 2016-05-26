@@ -1,6 +1,12 @@
-app.controller('companyCtrl', function($scope, $window, $route, $location, companyService, identityService){
+app.controller('companyCtrl', function($scope, $window, $route, $routeParams, $location, companyService, identityService){
+
+  $scope.companies = $route.current.locals.companies;
+  $scope.posted = $route.current.locals.posted;
+  $scope.canApply = $route.current.locals.canApply;
+  $scope.applied = $route.current.locals.applied;
 
   $scope.identity = identityService;
+  $scope.company = $routeParams.companyid;
 
   $scope.addCompany = function(){
     var newCompany = {
@@ -71,10 +77,4 @@ app.controller('companyCtrl', function($scope, $window, $route, $location, compa
       console.log(status);
     });
   }
-
-  $scope.companies = $route.current.locals.companies;
-  $scope.posted = $route.current.locals.posted;
-  $scope.canApply = $route.current.locals.canApply;
-  $scope.applied = $route.current.locals.applied;
-
 });

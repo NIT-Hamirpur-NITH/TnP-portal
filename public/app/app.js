@@ -250,6 +250,13 @@ app.config(function($routeProvider, $locationProvider){
         "applied": routeCheck.user.applied
       }
     })
+    .when('/company/edit/:companyid',{
+      templateUrl: '/partials/edit.html',
+      controller: 'companyCtrl',
+      resolve: {
+        "auth": routeCheck.adminTpr.auth
+      }
+    })
     .when('/placement/add',{
       templateUrl: '/partials/addplacement.html',
       controller: 'placementCtrl',

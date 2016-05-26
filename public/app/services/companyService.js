@@ -1,4 +1,4 @@
-app.factory('companyService', function($http, $q){
+app.factory('companyService', function($http, $q, $routeParams){
   return {
     add : function(company){
       var deferred = $q.defer();
