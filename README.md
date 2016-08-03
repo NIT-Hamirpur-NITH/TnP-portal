@@ -1,5 +1,7 @@
 #Training and Placement portal for NIT Hamirpur
 
+[![Join the chat at https://gitter.im/Nithmr/TnP-portal](https://badges.gitter.im/Nithmr/TnP-portal.svg)](https://gitter.im/Nithmr/TnP-portal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ##How to contribute:-
 1. Clone the repository locally using: `git clone https://github.com/Nithmr/TnP-portal.git`
 2. Open your command line and type: `cd TnP-portal`
