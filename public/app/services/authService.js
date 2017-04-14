@@ -10,13 +10,13 @@ app.factory('authService', function($http, $q, identityService, $cookies){
           password:password
         }
       })
-      .success(function(data){
+      .then(function(data){
         var putData = JSON.stringify(data.user);    //JSON.stringify converting the response into a string
         $cookies.put('userCookie', putData);    //Cookie stores data as string
         identityService.currentUser = $cookies.get('userCookie');
         deferred.resolve(data);
-      })
-      .error(function(status){
+      },
+      function(status){
         deferred.reject(status);
       });
       return deferred.promise;
@@ -29,10 +29,10 @@ app.factory('authService', function($http, $q, identityService, $cookies){
         url: '/api/admin/addtpr',
         data: newUser
       })
-      .success(function(data){
+      .then(function(data){
         deferred.resolve(data);
-      })
-      .error(function(status){
+      },
+      function(status){
         deferred.reject(status);
       });
       return deferred.promise;
@@ -44,12 +44,12 @@ app.factory('authService', function($http, $q, identityService, $cookies){
         method: 'POST',
         url: '/api/logout'
       })
-      .success(function(data){
+      .then(function(data){
         $cookies.remove('userCookie');
         identityService.currentUser = undefined;
         deferred.resolve(data);
-      })
-      .error(function(status){
+      },
+      function(status){
         deferred.reject(status);
       });
       return deferred.promise;
