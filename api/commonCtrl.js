@@ -8,8 +8,8 @@ var CONF_FILE = require('./auth/CONF_FILE.js')
 var smtpConfig = {
   service: 'Gmail',
   auth: {
-      user: CONF_FILE.EMAIL.username,
-      pass: CONF_FILE.EMAIL.password
+      user: CONF_FILE.username,
+      pass: CONF_FILE.password
   }
 };
 var transporter = nodemailer.createTransport('SMTP',smtpConfig);
@@ -38,7 +38,7 @@ exports.addCompany =  function(req, res, next){
       for(i=0; i<user.length;i++){
         var obj = user[i];
         var mailOptions = {
-            from: '"TnP " <'+ CONF_FILE.EMAIL.username +'>',
+            from: '"TnP " <'+ CONF_FILE.username +'>',
             to: obj.email,
             subject: 'Registration',
             text: 'Company name:'+company.name+'. Kindly Check your dashboard on TnP Portal and check eligibilty.'
